@@ -29,6 +29,8 @@ public class FXMLInicioSesionController implements Initializable {
 
     @FXML
     private void clickIniciarSesion(ActionEvent event) {
+
+
     }
     
 }
