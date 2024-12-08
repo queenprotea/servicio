@@ -1,4 +1,4 @@
-package Gestion.modelo;
+package Gestion.modelo.raw;
 
 public class Organizacion {
 
