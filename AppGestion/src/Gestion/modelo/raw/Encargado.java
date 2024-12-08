@@ -15,6 +15,7 @@ public class Encargado {
 
     public Encargado() {
     }
+
     public Encargado(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String contrasena, String correo, String telefono, Organizacion organizacion, String estado, String puesto) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
