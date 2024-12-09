@@ -5,15 +5,24 @@ import Restaurante.conexionbd.ConexionBD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrganizacionDAO {
 
-    private static Organizacion recuperarOrganizacion(String idOrganizacion) throws SQLException {
+    private static Organizacion recuperarOrganizacion(ResultSet resultSet) throws SQLException {
 
-        Connection connection = ConexionBD.abrirConexion();
-        String sqlSentencia = "SELECT * FROM organizacion WHERE idOrganizacion = ?";
-        PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+        Organizacion organizacion = new Organizacion();
+        organizacion.setIdOrganizacion(resultSet.getInt("idOrganizacion"));
+        organizacion.setActiva(String.valueOf(resultSet.getBoolean("activa")));
+        organizacion.setCalle(resultSet.getString("calle"));
+        organizacion.setCiudad(resultSet.getString("ciudad"));
+        organizacion.setCodigoPostal(resultSet.getString("codigoPostal"));
+        organizacion.setCorreo(resultSet.getString("correo"));
+        organizacion.setEstado(resultSet.getString("estado"));
+
+
+
 
 
         return null;
