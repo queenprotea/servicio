@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class EncargadoDAO {
-    private static HashMap<String, Object> registrarCoordinador(Encargado encargado) throws SQLException {
+    public static HashMap<String, Object> registrarEncargado(Encargado encargado) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
