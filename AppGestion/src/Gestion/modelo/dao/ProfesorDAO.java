@@ -1,8 +1,8 @@
 package Gestion.modelo.dao;
 
-import Gestion.modelo.raw.Coordinador;
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Organizacion;
+import Gestion.modelo.raw.Coordinador;
+import Gestion.modelo.raw.Profesor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class CoordinadorDAO {
-
-    private static HashMap<String, Object> registarCoordionador(Coordinador coordinador) throws SQLException{
+public class ProfesorDAO {
+    private static HashMap<String, Object> registarProfesor(Profesor profesor) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
@@ -49,33 +48,35 @@ public class CoordinadorDAO {
     }
 
 
-    private static Coordinador serializarCoordinador(ResultSet rs) throws SQLException{
+    private static Profesor serializarProfesor(ResultSet rs) throws SQLException{
 
-        Coordinador coordinador = new Coordinador();
-        coordinador.setContrasena(rs.getString("contrasena"));
-        coordinador.setNombre(rs.getString("nombre"));
-        coordinador.setCorreo(rs.getString("correo"));
-        coordinador.setMatricula(rs.getString("matricula"));
-        coordinador.setIdUsuario(rs.getInt("idUsuario"));
-        coordinador.setArea_especialidad(rs.getString("area_especialidad"));
+        Profesor profesor = new Profesor();
 
-        return coordinador;
+        profesor.setNombre(rs.getString("nombre"));
+        profesor.setApellidoPaterno(rs.getString("apellidoPaterno"));
+        profesor.setApellidoMaterno(rs.getString("apellidoMaterno"));
+        profesor.setCorreo(rs.getString("correo"));
+        profesor.setTelefono(rs.getString("telefono"));
+        profesor.setContrasena(rs.getString("contrasena"));
+        profesor.setEspecialidad(rs.getString("especialidad"));
+        profesor.setMatricula(rs.getString("matricula"));
+        profesor.setEstado(rs.getString("estado"));
+        profesor.setIdUsuario(String.valueOf(rs.getInt("idUsuario")));
+
+        return profesor;
 
     }
 
-    public static Coordinador obtenerCoordinadirPorId(int idCoordinador) throws SQLException {
+    public static Profesor obtenerProfesorPorId(int idProfesor) throws SQLException {
 
         try {
 
-            Coordinador coordinador = new Coordinador();
-
-            String sqlSentencia = "SELECT * FROM organizacion WHERE idOrganizacion = ?";
+            String sqlSentencia = "SELECT * FROM profesor WHERE idprofesor= ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
-            statement.setInt(1, idCoordinador);
+            statement.setInt(1, idProfesor);
             ResultSet resultSet = statement.executeQuery();
-            coordinador = serializarCoordinador(resultSet);
 
-            return coordinador;
+            return serializarProfesor(resultSet);
         }catch (SQLException e){
             return null;
         }

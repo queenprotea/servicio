@@ -1,8 +1,8 @@
 package Gestion.modelo.dao;
 
-import Gestion.modelo.raw.Coordinador;
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Organizacion;
+import Gestion.modelo.raw.Coordinador;
+import Gestion.modelo.raw.Estudiante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,15 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class CoordinadorDAO {
+public class EstudianteDAO {
 
-    private static HashMap<String, Object> registarCoordionador(Coordinador coordinador) throws SQLException{
+    private static HashMap<String, Object> registarEstudiante(Estudiante estudiante) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
-                String sqlSentencia = "INSERT INTO usuario (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
+                String sqlSentencia = "INSERT INTO estudiante (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 statement.setString(1, coordinador.getNombre());
                 statement.setString(2, coordinador.getCorreo());
@@ -49,35 +49,43 @@ public class CoordinadorDAO {
     }
 
 
-    private static Coordinador serializarCoordinador(ResultSet rs) throws SQLException{
+    private static Estudiante serializarEstudiante(ResultSet rs) throws SQLException{
 
-        Coordinador coordinador = new Coordinador();
-        coordinador.setContrasena(rs.getString("contrasena"));
-        coordinador.setNombre(rs.getString("nombre"));
-        coordinador.setCorreo(rs.getString("correo"));
-        coordinador.setMatricula(rs.getString("matricula"));
-        coordinador.setIdUsuario(rs.getInt("idUsuario"));
-        coordinador.setArea_especialidad(rs.getString("area_especialidad"));
+        Estudiante estudiante = new Estudiante();
 
-        return coordinador;
+        estudiante.setIdEstudiante(rs.getInt("idEstudiante"));
+        estudiante.setNombre(rs.getString("nombre"));
+        estudiante.setApellidoPaterno(rs.getString("apellidoPaterno"));
+        estudiante.setApellidoMaterno(rs.getString("apellidoMaterno"));
+        estudiante.setCorreo(rs.getString("correo"));
+        estudiante.setTelefono(rs.getString("telefono"));
+        estudiante.setSemestre(String.valueOf(rs.getInt("semestre")));
+        estudiante.setPromedio(String.valueOf(rs.getDouble("promedio")));
+        estudiante.setPassword(rs.getString("password"));
+        estudiante.setMatricula(rs.getString("matricula"));
+        estudiante.setEstado(rs.getString("estado"));
+
+        return estudiante;
 
     }
 
-    public static Coordinador obtenerCoordinadirPorId(int idCoordinador) throws SQLException {
+    public static Estudiante obtenerEstudiantePorId(int idEstudiante) throws SQLException {
 
         try {
 
-            Coordinador coordinador = new Coordinador();
+            Estudiante estudiante = new Estudiante();
 
-            String sqlSentencia = "SELECT * FROM organizacion WHERE idOrganizacion = ?";
+            String sqlSentencia = "SELECT * FROM estudiante WHERE idOrganizacion = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
-            statement.setInt(1, idCoordinador);
+            statement.setInt(1, idEstudiante);
             ResultSet resultSet = statement.executeQuery();
-            coordinador = serializarCoordinador(resultSet);
+            estudiante = serializarEstudiante(resultSet);
 
-            return coordinador;
+            return estudiante;
+
         }catch (SQLException e){
             return null;
         }
     }
+
 }

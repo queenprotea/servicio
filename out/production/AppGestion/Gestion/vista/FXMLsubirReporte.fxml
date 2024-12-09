@@ -6,65 +6,49 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="64.0" prefWidth="600.0" style="-fx-background-color: #2d4ca0;" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" layoutX="203.0" layoutY="10.0" text="Subir Reportes" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="52.0" fitWidth="50.0" layoutX="526.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Downloads/800px-Logo_de_la_Universidad_Veracruzana.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </top>
-   <center>
-      <AnchorPane prefHeight="336.0" prefWidth="609.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="40.0" layoutY="6.0" text="Proyecto" />
-            <Label layoutX="180.0" layoutY="6.0" text="Razon Social" />
-            <Label layoutX="339.0" layoutY="6.0" text="Fecha Inicio" />
-            <Label layoutX="496.0" layoutY="6.0" text="Fecha Fin" />
-            <Label layoutX="36.0" layoutY="82.0" text="Encargado" />
-            <Label layoutX="189.0" layoutY="82.0" text="Puesto" />
-            <Label layoutX="352.0" layoutY="82.0" text="Correo" />
-            <Label layoutX="496.0" layoutY="82.0" text="Telefono" />
-            <AnchorPane layoutX="42.0" layoutY="150.0" prefHeight="122.0" prefWidth="228.0" style="-fx-background-color: #CECECE;">
-               <children>
-                  <Label fx:id="lblNumeroDeEntrega" layoutX="70.0" layoutY="6.0" text="Entrega Numero" />
-                  <Label layoutX="14.0" layoutY="29.0" text="Fecha Inicio" />
-                  <Label layoutX="146.0" layoutY="29.0" text="Fecha Fin" />
-                  <Label fx:id="lblFechaInicioReporte" layoutX="14.0" layoutY="53.0" text="Fecha Inicio" />
-                  <Label fx:id="lblFechaFinReporte" layoutX="146.0" layoutY="53.0" text="Fecha Fin" />
-                  <Button layoutX="88.0" layoutY="83.0" mnemonicParsing="false" onAction="#subirReporte" text="Subir" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="432.0" layoutY="150.0" prefHeight="127.0" prefWidth="111.0" style="-fx-background-color: #CECECE;">
-               <children>
-                  <Label fx:id="lblNumeroDeEntrega1" layoutX="8.0" layoutY="6.0" text="Horas Reportadas" />
-                  <TextField layoutX="14.0" layoutY="57.0" prefHeight="10.0" prefWidth="84.0" />
-               </children>
-            </AnchorPane>
-            <Label fx:id="lblProyecto" layoutX="40.0" layoutY="33.0" text="Proyecto" />
-            <Label fx:id="lblRazonSocial" layoutX="180.0" layoutY="33.0" text="Razon Social" />
-            <Label fx:id="lblFechaInicioProyecto" layoutX="339.0" layoutY="33.0" text="Fecha Inicio" />
-            <Label fx:id="lblFechaFinProyecto" layoutX="496.0" layoutY="33.0" text="Fecha Fin" />
-            <Label fx:id="lblEncargado" layoutX="36.0" layoutY="111.0" text="Encargado" />
-            <Label fx:id="lblPuesto" layoutX="189.0" layoutY="111.0" text="Puesto" />
-            <Label fx:id="lblCorreo" layoutX="352.0" layoutY="111.0" text="Correo" />
-            <Label fx:id="lblTelefono" layoutX="496.0" layoutY="111.0" text="Telefono" />
-            <Button layoutX="207.0" layoutY="297.0" mnemonicParsing="false" onAction="#cancelarSubirReporte" text="Cancelar" />
-            <Button layoutX="326.0" layoutY="297.0" mnemonicParsing="false" onAction="#entregarReporte" text="Entregar" />
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label layoutX="203.0" layoutY="21.0" text="Subir Reportes" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="99.0" text="Proyecto" />
+      <Label layoutX="178.0" layoutY="99.0" text="Razon Social" />
+      <Label layoutX="327.0" layoutY="99.0" text="Fecha inicio" />
+      <Label layoutX="485.0" layoutY="99.0" text="Fecha Fin" />
+      <Label layoutX="46.0" layoutY="148.0" text="Encargado" />
+      <Label layoutX="193.0" layoutY="148.0" text="Puesto" />
+      <Label layoutX="339.0" layoutY="148.0" text="Correo" />
+      <Label layoutX="486.0" layoutY="148.0" text="Telefono" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ced1d3" height="120.0" layoutX="35.0" layoutY="211.0" stroke="#d0d0d0" strokeType="INSIDE" width="216.0" />
+      <Label fx:id="lblNombreDeEntrega" layoutX="90.0" layoutY="219.0" text="Nombre De Entrega" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ced1d3" height="120.0" layoutX="396.0" layoutY="211.0" stroke="#d0d0d0" strokeType="INSIDE" width="113.0" />
+      <Label layoutX="405.0" layoutY="219.0" text="Horas Reportadas" />
+      <Label fx:id="lblNombreProyecto" layoutX="23.0" layoutY="116.0" text="lblNombreProyecto" />
+      <TextField fx:id="tfHorasReportadas" layoutX="396.0" layoutY="259.0" prefHeight="25.0" prefWidth="113.0" />
+      <Label fx:id="lblNombreRazonSocial" layoutX="151.0" layoutY="116.0" text="lblNombreRazonSocial" />
+      <Label fx:id="lblFechaInicio" layoutX="322.0" layoutY="116.0" text="lblFechaInicio" />
+      <Label fx:id="lblFechaFin" layoutX="480.0" layoutY="116.0" text="lblFechaFin" />
+      <ImageView fitHeight="94.0" fitWidth="56.0" layoutX="535.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblNombreEncargado" layoutX="23.0" layoutY="165.0" text="lblNombreEncargado" />
+      <Label fx:id="lblPuestoEncargado" layoutX="159.0" layoutY="165.0" text="lblPuestoEncargado" />
+      <Label fx:id="lblCorreoEncargado" layoutX="305.0" layoutY="165.0" text="lblCorreoEncargado" />
+      <Label fx:id="lblTelefono" layoutX="452.0" layoutY="165.0" text="lblTelefonoEncargado" />
+      <Label layoutX="43.0" layoutY="242.0" text="Fecha inicio" />
+      <Label layoutX="186.0" layoutY="242.0" text="Fecha Fin" />
+      <Label fx:id="lblFechaInicioReporte" layoutX="41.0" layoutY="263.0" text="Fecha Inicio" />
+      <Label fx:id="lblFechaFinReporte" layoutX="187.0" layoutY="263.0" text="Fecha Fin" />
+      <Button layoutX="203.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+      <Button layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickEntregar" text="Entregar" />
+      <Button layoutX="117.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickSubirReporte" text="Subir" />
+   </children>
+</AnchorPane>

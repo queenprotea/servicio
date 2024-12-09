@@ -5,7 +5,11 @@
 package Gestion.controlador;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import Gestion.modelo.dao.CoordinadorDAO;
+import Gestion.modelo.dao.EstudianteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +34,23 @@ public class FXMLInicioSesionController implements Initializable {
     @FXML
     private void clickIniciarSesion(ActionEvent event) {
 
+
+
+    }
+
+    private void obtenerTipoUsuario(String contrasena,String idUsuario) throws SQLException {
+        int tipoUsuario = 0;
+
+        if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)) != null){
+            if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena)){
+                tipoUsuario = 1;
+            }
+        }
+        if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)) != null){
+            if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)).getPassword() == contrasena){
+                tipoUsuario = 2;
+            }
+        }
 
     }
     
