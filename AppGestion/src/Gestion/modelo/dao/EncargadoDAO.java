@@ -2,7 +2,8 @@ package Gestion.modelo.dao;
 
 
 import Gestion.modelo.raw.Encargado;
-import Restaurante.conexionbd.ConexionBD;
+import Gestion.conexionbd.ConexionBD;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class EncargadoDAO {
-    private static HashMap<String, Object> registarCoordionador(Encargado encargado) throws SQLException {
+    private static HashMap<String, Object> registrarCoordinador(Encargado encargado) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
@@ -29,6 +30,7 @@ public class EncargadoDAO {
                 statement.setString(7, encargado.getApellidoMaterno());
                 statement.setString(8, String.valueOf(encargado.getOrganizacion().getIdOrganizacion()));
                 int resultadoSentencia = statement.executeUpdate();
+
                 if(resultadoSentencia>0){
                     respuesta.put("Error", false);
                     respuesta.put("mensaje", "El encargado "+encargado.getNombre()+" fue registrado exitosamente");
@@ -36,16 +38,19 @@ public class EncargadoDAO {
                     respuesta.put("Error", true);
                     respuesta.put("mensaje", "Error al registrar");
                 }
+
             }catch (SQLException e){
                 respuesta.put("Error", true);
                 respuesta.put("mensaje", "Error al registrar");
             }finally {
                 connection.close();
             }
+
         }else {
             respuesta.put("Error", true);
             respuesta.put("mensaje", "Error al conectar con la base de datos");
         }
+
         return respuesta;
     }
 
@@ -62,7 +67,7 @@ public class EncargadoDAO {
         encargado.setTelefono(rs.getString("telefono"));
         encargado.setCorreo(rs.getString("correo"));
         encargado.setIdUsuario(rs.getInt("idUsuario"));
-        encargado.setOrganizacion(rs.getInt("idOrganizacion"));
+        encargado.setOrganizacion(OrganizacionDAO.obtenerOrganizacionPorId(rs.getInt("idOrganizacion")));
 
         return encargado;
 

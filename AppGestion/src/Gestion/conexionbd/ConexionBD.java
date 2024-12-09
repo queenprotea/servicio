@@ -1,4 +1,4 @@
-package Restaurante.conexionbd;
+package Gestion.conexionbd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
