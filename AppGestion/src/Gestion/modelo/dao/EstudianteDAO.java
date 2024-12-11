@@ -12,24 +12,28 @@ import java.util.HashMap;
 
 public class EstudianteDAO {
 
-    private static HashMap<String, Object> registarEstudiante(Estudiante estudiante) throws SQLException {
+    public static HashMap<String, Object> registarEstudiante(Estudiante estudiante) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
-                String sqlSentencia = "INSERT INTO estudiante (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
-                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
-                statement.setString(1, coordinador.getNombre());
-                statement.setString(2, coordinador.getCorreo());
-                statement.setString(3, coordinador.getContrasena());
-                statement.setString(4, coordinador.getMatricula());
-                statement.setInt(5, coordinador.getIdUsuario());
-                statement.setString(6, coordinador.getArea_especialidad());
+                String sqlsentencia = "INSERT INTO estudiante (nombre, apellidoPaterno, apellidoMaterno, correo, telefono, semestre, promedio, creditos, matricula) VALUES (?,?,?,?,?,?,?,?,?)";
+                PreparedStatement statement = connection.prepareStatement(sqlsentencia);
+                statement.setString(1, estudiante.getNombre());
+                statement.setString(2, estudiante.getApellidoPaterno());
+                statement.setString(3, estudiante.getApellidoMaterno());
+                statement.setString(4, estudiante.getCorreo());
+                statement.setString(5, estudiante.getTelefono());
+                statement.setString(6, estudiante.getSemestre());
+                statement.setString(7, estudiante.getPromedio());
+                statement.setString(8, String.valueOf(estudiante.getCreditos()));
+                statement.setString(9, estudiante.getMatricula());
+
                 int resultadoSentencia = statement.executeUpdate();
                 if(resultadoSentencia>0){
                     respuesta.put("Error", false);
-                    respuesta.put("mensaje", "El coordiandor "+coordinador.getNombre()+" fue registrado exitosamente");
+                    respuesta.put("mensaje", "El coordiandor "+estudiante.getNombre()+" fue registrado exitosamente");
                 }else{
                     respuesta.put("Error", true);
                     respuesta.put("mensaje", "Error al registrar");

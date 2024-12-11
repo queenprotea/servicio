@@ -29,6 +29,18 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickCrearProyecto(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLCrearProyecto.fxml"));
+            Parent vista = loader.load();
+            FXLMCrearProyectoController controller = loader.getController();
+            controller.InicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -51,6 +63,16 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickRegistrarOrganizacion(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistrarOrganizacion.fxml"));
+            Parent vista = loader.load();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML

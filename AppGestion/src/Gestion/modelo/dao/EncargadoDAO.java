@@ -1,15 +1,20 @@
 package Gestion.modelo.dao;
 
 
+import Gestion.modelo.raw.Coordinador;
 import Gestion.modelo.raw.Encargado;
 import Gestion.conexionbd.ConexionBD;
+import Gestion.modelo.raw.Organizacion;
+import javafx.collections.ObservableList;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class EncargadoDAO {
     public static HashMap<String, Object> registrarEncargado(Encargado encargado) throws SQLException {
@@ -72,5 +77,48 @@ public class EncargadoDAO {
         return encargado;
 
     }
+
+    public static Encargado obtenerEncargadoPorId(int idCoordinador) throws SQLException {
+
+        try {
+
+            Encargado encargado = new Encargado();
+
+            String sqlSentencia = "SELECT * FROM encargado WHERE idEncargado = ?";
+            PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
+            statement.setInt(1, idCoordinador);
+            ResultSet resultSet = statement.executeQuery();
+            encargado = serializarEncargado(resultSet);
+
+            return encargado;
+        }catch (SQLException e){
+            return null;
+        }
+    }
+    public static ObservableList<Encargado> obtenerEncargados() throws SQLException {
+
+        List<Encargado> encargados = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM encargado";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                encargados = new ArrayList<>();
+                while (resultSet.next()) {
+                    encargados.add(serializarEncargado(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Encargado>) encargados;
+    }
+
 
 }

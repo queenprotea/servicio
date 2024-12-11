@@ -12,11 +12,13 @@ import Gestion.modelo.dao.EncargadoDAO;
 import Gestion.modelo.dao.OrganizacionDAO;
 import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Organizacion;
+import Gestion.utilidades.Mensajes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -50,25 +52,30 @@ public class FXMLRegistrarEncargadoController implements Initializable {
 
     @FXML
     private void clickCancelar(ActionEvent event) {
+        cerrarVentana();
     }
 
     @FXML
     private void clickRegistrar(ActionEvent event) throws SQLException {
         if (validarCampos()){
+            try {
+                Encargado encargado = new Encargado();
 
-            Encargado encargado = new Encargado();
+                encargado.setNombre(TfNombre.getText());
+                encargado.setApellidoPaterno(TFApellidoPaterno.getText());
+                encargado.setApellidoMaterno(TFApellidoMaterno.getText());
+                encargado.setPuesto(TFPuesto.getText());
+                encargado.setTelefono(TFTelefono.getText());
+                encargado.setCorreo(TFCorreo.getText());
+                encargado.setEstado("Activo");
+                encargado.setOrganizacion(CBOrganizacion.getValue());
 
-            encargado.setNombre(TfNombre.getText());
-            encargado.setApellidoPaterno(TFApellidoPaterno.getText());
-            encargado.setApellidoMaterno(TFApellidoMaterno.getText());
-            encargado.setPuesto(TFPuesto.getText());
-            encargado.setTelefono(TFTelefono.getText());
-            encargado.setCorreo(TFCorreo.getText());
-            encargado.setEstado("Activo");
-            encargado.setOrganizacion(CBOrganizacion.getValue());
-
-            EncargadoDAO.registrarEncargado(encargado);
-
+                EncargadoDAO.registrarEncargado(encargado);
+            }catch (SQLException e){
+                e.printStackTrace();
+                Mensajes.mostrarAlertaConfirmacion("Error", "Error al conectar con la base de datos");
+                cerrarVentana();
+            }
         }
     }
 
@@ -93,13 +100,15 @@ public class FXMLRegistrarEncargadoController implements Initializable {
                 TFPuesto.getText().isEmpty() ||
                 TFTelefono.getText().isEmpty() ||
                 TFCorreo.getText().isEmpty() ||
-                CBOrganizacion.getValue() == null){
-
+                CBOrganizacion.getValue() == null)
             return false;
 
-        }
-
         return true;
+    }
+    private void cerrarVentana(){
+        Stage stage =(Stage) TFApellidoMaterno.getScene().getWindow();
+        stage.close();
+
     }
 
 }

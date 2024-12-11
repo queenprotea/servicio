@@ -29,7 +29,7 @@ public class FXMLInicioSesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void clickIniciarSesion(ActionEvent event) {

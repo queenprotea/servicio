@@ -13,8 +13,9 @@ public class Estudiante {
     private String estado;
     private String matricula;
     private String promedio;
+    private int creditos;
 
-    public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio) {
+    public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio, int creditos) {
         this.idEstudiante = idEstudiante;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -24,6 +25,9 @@ public class Estudiante {
         this.correo = correo;
         this.password = password;
         this.estado = estado;
+        this.matricula = matricula;
+        this.promedio = promedio;
+        this.creditos = creditos;
     }
     public Estudiante() {
     }
@@ -116,4 +120,11 @@ public class Estudiante {
         this.telefono = telefono;
     }
 
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
 }

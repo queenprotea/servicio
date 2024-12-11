@@ -11,24 +11,25 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class ProfesorDAO {
-    private static HashMap<String, Object> registarProfesor(Profesor profesor) throws SQLException {
+    public static HashMap<String, Object> registarProfesor(Profesor profesor) throws SQLException {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
-                String sqlSentencia = "INSERT INTO profesor (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
+                String sqlSentencia = "INSERT INTO profesor (nombre, apelldiopaterno, apellidomaterno, correo,  matricula,  area_especialidad) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
-                statement.setString(1, coordinador.getNombre());
-                statement.setString(2, coordinador.getCorreo());
-                statement.setString(3, coordinador.getContrasena());
-                statement.setString(4, coordinador.getMatricula());
-                statement.setInt(5, coordinador.getIdUsuario());
-                statement.setString(6, coordinador.getArea_especialidad());
+                statement.setString(1, profesor.getNombre());
+                statement.setString(2, profesor.getApellidoPaterno());
+                statement.setString(3, profesor.getApellidoMaterno());
+                statement.setString(4, profesor.getCorreo());
+                statement.setString(5, profesor.getMatricula());
+                statement.setString(6, profesor.getEspecialidad());
+
                 int resultadoSentencia = statement.executeUpdate();
                 if(resultadoSentencia>0){
                     respuesta.put("Error", false);
-                    respuesta.put("mensaje", "El coordiandor "+coordinador.getNombre()+" fue registrado exitosamente");
+                    respuesta.put("mensaje", "El coordiandor "+profesor.getNombre()+" fue registrado exitosamente");
                 }else{
                     respuesta.put("Error", true);
                     respuesta.put("mensaje", "Error al registrar");
