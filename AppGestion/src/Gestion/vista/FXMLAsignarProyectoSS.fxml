@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.vista.FXMLAsignarProyectoSSdos">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label layoutX="168.0" layoutY="15.0" text="Asignar Proyecto SS" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="94.0" fitWidth="56.0" layoutX="535.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablaAlumnosSinAsignar" layoutX="14.0" layoutY="90.0" prefHeight="287.0" prefWidth="131.0">
+        <columns>
+          <TableColumn fx:id="columnaAlumnosSinAsignar" prefWidth="127.0" text="Alumnos Sin Asignar" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tablaAlumnosAsignados" layoutX="240.0" layoutY="90.0" prefHeight="287.0" prefWidth="139.0">
+        <columns>
+          <TableColumn fx:id="columnaAlumnosAsignados" prefWidth="138.0" text="Alumnos Asignados" />
+        </columns>
+      </TableView>
+      <Button layoutX="168.0" layoutY="221.0" mnemonicParsing="false" onAction="#clickAsignar" text="Asignar" />
+      <Label layoutX="438.0" layoutY="74.0" text="Nombre Proyecto" />
+      <Label layoutX="449.0" layoutY="128.0" text="Organizacion" />
+      <Label layoutX="445.0" layoutY="183.0" text="Fecha de inicio" />
+      <Label layoutX="452.0" layoutY="238.0" text="Fecha de fin" />
+      <Label layoutX="453.0" layoutY="297.0" text="Descripcion" />
+      <Label fx:id="lblNombreProyecto" layoutX="438.0" layoutY="97.0" text="Nombre Proyecto" />
+      <Label fx:id="lblOrganizacion" layoutX="449.0" layoutY="148.0" text="Organizacion" />
+      <Label fx:id="lblFechaInicio" layoutX="445.0" layoutY="205.0" text="Fecha de inicio" />
+      <Label fx:id="lblFechaFin" layoutX="452.0" layoutY="259.0" text="Fecha de fin" />
+      <Button layoutX="405.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+      <Button layoutX="484.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickAceptar" text="Aceptar" />
+   </children>
+</AnchorPane>
