@@ -17,7 +17,7 @@ public class ProfesorDAO {
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
-                String sqlSentencia = "INSERT INTO usuario (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
+                String sqlSentencia = "INSERT INTO profesor (nombre, correo, contrasena, matricula, idUsuario, area_especialidad) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 statement.setString(1, coordinador.getNombre());
                 statement.setString(2, coordinador.getCorreo());
