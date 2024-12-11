@@ -42,7 +42,7 @@ public class FXMLInicioSesionController implements Initializable {
         int tipoUsuario = 0;
 
         if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)) != null){
-            if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena)){
+            if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena){
                 tipoUsuario = 1;
             }
         }
