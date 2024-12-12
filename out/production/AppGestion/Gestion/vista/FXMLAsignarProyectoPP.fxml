@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLAsignarProyectoPPController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label layoutX="167.0" layoutY="15.0" text="Asignar Proyecto PP" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="94.0" fitWidth="56.0" layoutX="535.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

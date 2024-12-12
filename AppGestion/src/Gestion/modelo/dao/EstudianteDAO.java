@@ -2,13 +2,17 @@ package Gestion.modelo.dao;
 
 import Gestion.conexionbd.ConexionBD;
 import Gestion.modelo.raw.Coordinador;
+import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Estudiante;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class EstudianteDAO {
 
@@ -53,7 +57,7 @@ public class EstudianteDAO {
     }
 
 
-    private static Estudiante serializarEstudiante(ResultSet rs) throws SQLException{
+    public static Estudiante serializarEstudiante(ResultSet rs) throws SQLException{
 
         Estudiante estudiante = new Estudiante();
 
@@ -92,4 +96,33 @@ public class EstudianteDAO {
         }
     }
 
+    public static ObservableList<Estudiante> obtenerEstudiantes() throws SQLException {
+
+        List<Estudiante> estudiantes = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM estudiante";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                estudiantes = new ArrayList<>();
+                while (resultSet.next()) {
+                    estudiantes.add(serializarEstudiante(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Estudiante>) estudiantes;
+    }
+
+    public void modificarEstudiante(Estudiante estudiante) throws SQLException {
+        Connection connection = ConexionBD.abrirConexion();
+
+    }
 }
