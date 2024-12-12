@@ -113,4 +113,31 @@ public class OrganizacionDAO {
         return organizacion;
     }
 
+    public static void modificarOrganizacion(Organizacion organizacion) throws SQLException {
+        Connection connection = ConexionBD.abrirConexion();
+        if (connection != null) {
+            try {
+                String sqlSentencia = "UPDATE organizacion SET razonsocial = ?, calle = ?, telefono = ?," +
+                        "codigopostal = ?, correo = ?, estado = ?, ciudad = ?, sector = ? , activa = ? WHERE idOrganizacion = ?" ;
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                statement.setString(1, organizacion.getRazonSocial());
+                statement.setString(2, organizacion.getCalle());
+                statement.setString(3, organizacion.getTelefono());
+                statement.setString(4, organizacion.getCodigoPostal());
+                statement.setString(5, organizacion.getCorreo());
+                statement.setString(6, organizacion.getEstado());
+                statement.setString(7, organizacion.getCiudad());
+                statement.setString(8, organizacion.getSector());
+                statement.setString(9, organizacion.getActiva());
+                statement.setInt(10, organizacion.getIdOrganizacion());
+
+                statement.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }finally {
+                connection.close();
+            }
+        }
+    }
+
 }
