@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.vista.FXMLRegistrarOrganizacionController">
+  <children>
+    <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="70.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+        <Label layoutX="150.0" layoutY="13.0" text="Registrar Organizacion" textAlignment="CENTER" textFill="WHITE">
+          <font>
+            <Font size="30.0" />
+          </font>
+        </Label>
+        <ImageView fitHeight="70.0" fitWidth="98.0" layoutX="537.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+          </image>
+        </ImageView>
+        <Label layoutX="147.0" layoutY="98.0" text="Razon Social" />
+        <TextField fx:id="tfRazonSocial" layoutX="220.0" layoutY="94.0" prefHeight="25.0" prefWidth="117.0" />
+        <Label layoutX="150.0" layoutY="130.0" text="Telefono" />
+        <Label layoutX="147.0" layoutY="165.0" text="Correo" />
+        <Label layoutX="337.0" layoutY="248.0" text="Descripcion" />
+        <TextArea fx:id="taDescripcion" layoutX="172.0" layoutY="264.0" prefHeight="60.0" prefWidth="399.0" />
+        <Button layoutX="368.0" layoutY="359.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+        <Button layoutX="496.0" layoutY="359.0" mnemonicParsing="false" onAction="#clickRegistrar" text="Registrar" />
+        <TextField fx:id="tfTelefono" layoutX="393.0" layoutY="126.0" prefHeight="25.0" prefWidth="117.0" />
+        <TextField fx:id="tfCorreo" layoutX="220.0" layoutY="164.0" prefHeight="25.0" prefWidth="117.0" />
+        <Label layoutX="150.0" layoutY="204.0" text="Sector" />
+        <TextField fx:id="tfSector" layoutX="220.0" layoutY="198.0" prefHeight="25.0" prefWidth="117.0" />
+        <TextField fx:id="tfCalle" layoutX="393.0" layoutY="94.0" prefHeight="25.0" prefWidth="117.0" />
+        <Label layoutX="346.0" layoutY="131.0" text="CP" />
+        <Label layoutX="346.0" layoutY="168.0" text="Estado" />
+        <TextField fx:id="tfCP" layoutX="220.0" layoutY="126.0" prefHeight="25.0" prefWidth="117.0" />
+        <TextField fx:id="tfEstado" layoutX="393.0" layoutY="164.0" prefHeight="25.0" prefWidth="117.0" />
+        <Label layoutX="346.0" layoutY="203.0" text="Ciudad" />
+        <TextField fx:id="tfCiudad" layoutX="393.0" layoutY="198.0" prefHeight="25.0" prefWidth="117.0" />
+        <Label layoutX="346.0" layoutY="98.0" text="Calle" />
+        <TableView layoutX="14.0" layoutY="102.0" prefHeight="257.0" prefWidth="117.0">
+          <columns>
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="116.0" text="Organizacion" fx:id="nombreOrganizacion" />
+          </columns>
+        </TableView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="514.0" layoutY="136.0" stroke="#001899" strokeType="INSIDE" width="77.0" />
+        <Button fx:id="estado" alignment="TOP_RIGHT" blendMode="SRC_ATOP" cache="true" cacheHint="DEFAULT" layoutX="518.0" layoutY="152.0" mnemonicParsing="false" onAction="#cliclestado" prefWidth="68.0" text="" />
+        <Label layoutX="534.0" layoutY="138.0" text="Estado" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>

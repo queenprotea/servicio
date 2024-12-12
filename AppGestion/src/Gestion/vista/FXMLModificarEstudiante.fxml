@@ -50,5 +50,8 @@
             <TableColumn fx:id="columnaMatriculaEstudiantes" prefWidth="63.199951171875" text="matricula" />
       </columns>
     </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="451.0" layoutY="168.0" stroke="#003d99" strokeType="INSIDE" width="135.0" />
+    <Label layoutX="501.0" layoutY="168.0" text="Estado" />
+    <Button fx:id="estado" layoutX="460.0" layoutY="184.0" mnemonicParsing="false" onAction="#cliclEstado" prefWidth="117.0" text="" />
   </children>
 </AnchorPane>
