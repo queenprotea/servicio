@@ -53,5 +53,8 @@
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="ESTUDIANTES" />
       </columns>
     </TableView>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="451.0" layoutY="168.0" stroke="#003d99" strokeType="INSIDE" width="135.0" />
+    <Label layoutX="501.0" layoutY="168.0" text="Estado" />
+    <Button fx:id="estado" layoutX="460.0" layoutY="184.0" mnemonicParsing="false" onAction="#cliclEstado" prefWidth="117.0" text="" />
   </children>
 </AnchorPane>
