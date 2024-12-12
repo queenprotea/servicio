@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.vista.FXMLAsignarProyectoPP">
+  <children>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003d99" height="61.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+    <Text fill="WHITE" fontSmoothingType="LCD" layoutX="130.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ASIGNAR PROYECTO PP">
+      <font>
+        <Font name="Arial Rounded MT Bold" size="28.0" />
+      </font>
+    </Text>
+    <TextField id="textaField" fx:id="textaFieldMatricula" layoutX="142.0" layoutY="85.0" prefWidth="279.0" promptText="Buscar Matricula" />
+    <Button layoutX="421.0" layoutY="86.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+    <TableView layoutX="152.0" layoutY="145.0" prefHeight="200.0" prefWidth="295.224609375">
+      <columns>
+        <TableColumn id="nombre" maxWidth="5000.0" minWidth="10.0" prefWidth="157.0" text="Nombre Estudiante" />
+        <TableColumn id="matricula" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Matricula" />
+      </columns>
+    </TableView>
+    <Button layoutX="374.0" layoutY="360.0" mnemonicParsing="false" onAction="#ver" text="ver" />
+    <Button layoutX="207.0" layoutY="360.0" mnemonicParsing="false" onAction="#cancelar" text="cancelar" />
+  </children>
+</AnchorPane>
