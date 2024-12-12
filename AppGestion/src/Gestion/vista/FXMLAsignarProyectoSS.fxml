@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLAsignarProyectoSSdosController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
@@ -26,12 +25,14 @@
       </ImageView>
       <TableView fx:id="tablaAlumnosSinAsignar" layoutX="14.0" layoutY="90.0" prefHeight="287.0" prefWidth="131.0">
         <columns>
-          <TableColumn fx:id="columnaAlumnosSinAsignar" prefWidth="127.0" text="Alumnos Sin Asignar" />
+          <TableColumn fx:id="columnaNombreSinAsignar" prefWidth="68.0" text="nombre" />
+            <TableColumn fx:id="columnaMatriculaSinAsignar" prefWidth="60.0" text="matricula" />
         </columns>
       </TableView>
       <TableView fx:id="tablaAlumnosAsignados" layoutX="240.0" layoutY="90.0" prefHeight="287.0" prefWidth="139.0">
         <columns>
-          <TableColumn fx:id="columnaAlumnosAsignados" prefWidth="138.0" text="Alumnos Asignados" />
+          <TableColumn fx:id="columnaNombreAsignado" prefWidth="70.0" text="nombre" />
+            <TableColumn fx:id="columnaMatriculaAsignado" prefWidth="68.0" text="matricula" />
         </columns>
       </TableView>
       <Button layoutX="168.0" layoutY="221.0" mnemonicParsing="false" onAction="#clickAsignar" text="Asignar" />

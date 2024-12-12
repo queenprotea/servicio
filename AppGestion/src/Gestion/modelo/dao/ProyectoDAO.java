@@ -1,14 +1,17 @@
 package Gestion.modelo.dao;
 
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Profesor;
+import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Proyecto;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ProyectoDAO {
     public static HashMap<String, Object> registarProyecto(Proyecto proyecto) throws SQLException {
@@ -83,4 +86,29 @@ public class ProyectoDAO {
             return null;
         }
     }
+    public static ObservableList<Proyecto> obtenerProyectos() throws SQLException {
+
+        List<Proyecto> proyectos = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM proyecto";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                proyectos = new ArrayList<>();
+                while (resultSet.next()) {
+                    proyectos.add(serializarProyecto(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Proyecto>) proyectos;
+    }
+
 }
