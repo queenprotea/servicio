@@ -6,6 +6,9 @@ package Gestion.controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Gestion.modelo.raw.Estudiante;
+import Gestion.modelo.raw.Proyecto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,13 +24,17 @@ import javafx.scene.control.TableView;
 public class FXMLAsignarProyectoSSdosController implements Initializable {
 
     @FXML
-    private TableView<?> tablaAlumnosSinAsignar;
+    private TableView<Estudiante> tablaAlumnosSinAsignar;
     @FXML
-    private TableColumn<?, ?> columnaAlumnosSinAsignar;
+    private TableColumn<?, ?> columnaNombreSinAsignar;
     @FXML
-    private TableView<?> tablaAlumnosAsignados;
+    private TableView<Estudiante> tablaAlumnosAsignados;
     @FXML
-    private TableColumn<?, ?> columnaAlumnosAsignados;
+    private TableColumn<?, ?> columnaNombreAsignado;
+    @FXML
+    private TableColumn<?, ?> columnaMatriculaSinAsignar;
+    @FXML
+    private TableColumn<?, ?> columnaMatriculaAsignado;
     @FXML
     private Label lblNombreProyecto;
     @FXML
@@ -36,6 +43,8 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
     private Label lblFechaInicio;
     @FXML
     private Label lblFechaFin;
+
+    Proyecto proyecto = new Proyecto();
 
     /**
      * Initializes the controller class.
@@ -56,5 +65,12 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
     @FXML
     private void clickAceptar(ActionEvent event) {
     }
-    
+
+    private void configurarTablas(){
+
+    }
+    public void inicializarValores(Proyecto proyecto) {
+        this.proyecto = proyecto;
+
+    }
 }
