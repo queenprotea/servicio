@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import Gestion.modelo.dao.EstudianteDAO;
 import Gestion.modelo.raw.Estudiante;
 import Gestion.modelo.raw.Proyecto;
+import Gestion.utilidades.Mensajes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -70,11 +72,21 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
 
     @FXML
     private void clickCancelar(ActionEvent event) {
+        Stage stage = (Stage) lblOrganizacion.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void clickAceptar(ActionEvent event) {
-
+        try{
+            for(Estudiante estudiante: estudiantes){
+                estudiante.setProyecto(proyecto);
+                EstudianteDAO.modificarEstudiante(estudiante);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            Mensajes.mostrarAlertaConfirmacion("error","Error al conectra a la base de datos");
+        }
     }
 
     private void configurarTablas(){
@@ -89,6 +101,8 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
             tablaAlumnosSinAsignar.setItems(EstudianteDAO.obtenerEstudiantes());
         } catch (SQLException e) {
             e.printStackTrace();
+            Mensajes.mostrarAlertaConfirmacion("error","Error al conectra a la base de datos");
+
         }
     }
     private void cargarInformacionProyecto(){
