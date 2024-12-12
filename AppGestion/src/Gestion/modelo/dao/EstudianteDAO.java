@@ -115,6 +115,8 @@ public class EstudianteDAO {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+            }finally {
+                connection.close();
             }
         }
 
@@ -123,6 +125,30 @@ public class EstudianteDAO {
 
     public void modificarEstudiante(Estudiante estudiante) throws SQLException {
         Connection connection = ConexionBD.abrirConexion();
+        if (connection != null) {
+            try {
+                String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
+                        " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? " +
+                        "WHERE idEstudiante = ?";
+                PreparedStatement statement = connection.prepareStatement(sqlsentencia);
+                statement.setString(1, estudiante.getNombre());
+                statement.setString(2, estudiante.getApellidoPaterno());
+                statement.setString(3, estudiante.getApellidoMaterno());
+                statement.setString(4, estudiante.getMatricula());
+                statement.setString(5, estudiante.getTelefono());
+                statement.setString(6, estudiante.getSemestre());
+                statement.setString(7, estudiante.getCorreo());
+                statement.setString(8, estudiante.getEstado());
+                statement.setInt(9, estudiante.getCreditos());
+                statement.setString(10, String.valueOf(estudiante.getProyecto().getIdProyecto()));
+                statement.setInt(11, estudiante.getIdEstudiante());
 
+                statement.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }finally {
+                connection.close();
+            }
+        }
     }
 }

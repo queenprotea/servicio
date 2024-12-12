@@ -14,6 +14,7 @@ public class Estudiante {
     private String matricula;
     private String promedio;
     private int creditos;
+    private Proyecto proyecto;
 
     public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio, int creditos) {
         this.idEstudiante = idEstudiante;
@@ -126,5 +127,13 @@ public class Estudiante {
 
     public int getCreditos() {
         return creditos;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public Proyecto getProyecto() {
+        return proyecto;
     }
 }
