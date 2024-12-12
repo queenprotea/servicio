@@ -6,12 +6,15 @@ package Gestion.vista;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Gestion.modelo.raw.Estudiante;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -23,7 +26,7 @@ public class FXMLSeleccionDeAlumnoParaProyectoPPController implements Initializa
     @FXML
     private TextField tfBuscador;
     @FXML
-    private TableView<?> tablaEstudiantes;
+    private TableView<Estudiante> tablaEstudiantes;
     @FXML
     private TableColumn<?, ?> columnaNombreEstudiante;
     @FXML
@@ -43,10 +46,20 @@ public class FXMLSeleccionDeAlumnoParaProyectoPPController implements Initializa
 
     @FXML
     private void clickVer(ActionEvent event) {
+        if (! tablaEstudiantes.getSelectionModel().isEmpty()) {
+
+        }
     }
 
     @FXML
     private void clickCancelar(ActionEvent event) {
     }
+
+    private void configurarTabla(){
+        columnaMatriculaEstudiante.setCellValueFactory(new PropertyValueFactory("nombre"));
+        columnaMatriculaEstudiante.setCellValueFactory(new PropertyValueFactory("matricula"));
+    }
+
+
     
 }

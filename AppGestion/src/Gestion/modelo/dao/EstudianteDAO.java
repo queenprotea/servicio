@@ -1,8 +1,7 @@
 package Gestion.modelo.dao;
 
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Coordinador;
-import Gestion.modelo.raw.Encargado;
+
 import Gestion.modelo.raw.Estudiante;
 import javafx.collections.ObservableList;
 
@@ -123,7 +122,7 @@ public class EstudianteDAO {
         return (ObservableList<Estudiante>) estudiantes;
     }
 
-    public void modificarEstudiante(Estudiante estudiante) throws SQLException {
+    public static void modificarEstudiante(Estudiante estudiante) throws SQLException {
         Connection connection = ConexionBD.abrirConexion();
         if (connection != null) {
             try {
@@ -151,4 +150,5 @@ public class EstudianteDAO {
             }
         }
     }
+
 }
