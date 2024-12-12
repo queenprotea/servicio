@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.vista.FXMLAsignarProyectoPP">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLAsignarProyectoPPController">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003d99" height="61.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
     <Text fill="WHITE" fontSmoothingType="LCD" layoutX="152.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ASIGNAR PROYECTO">
