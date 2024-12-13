@@ -73,18 +73,22 @@ public class ProyectoDAO {
     }
 
     public static Proyecto obtenerProyectoPorId(int idProyecto) throws SQLException {
-
+        Proyecto proyecto = new Proyecto();
         try {
 
-            String sqlSentencia = "SELECT * FROM proyecto WHERE idproyecto= ?";
+            String sqlSentencia = "SELECT * FROM proyecto WHERE idProyecto= ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
             statement.setInt(1, idProyecto);
             ResultSet resultSet = statement.executeQuery();
 
-            return serializarProyecto(resultSet);
+            if (resultSet.next()) {
+                proyecto = serializarProyecto(resultSet);
+            }
         }catch (SQLException e){
             return null;
         }
+
+        return proyecto;
     }
     public static ObservableList<Proyecto> obtenerProyectos() throws SQLException {
 

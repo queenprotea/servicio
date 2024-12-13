@@ -119,6 +119,8 @@ public class OrganizacionDAO {
 
     public static void modificarOrganizacion(Organizacion organizacion) throws SQLException {
         Connection connection = ConexionBD.abrirConexion();
+        System.out.println(organizacion.getIdOrganizacion());
+
         if (connection != null) {
             try {
                 String sqlSentencia = "UPDATE organizacion SET razonsocial = ?, calle = ?, telefono = ?," +

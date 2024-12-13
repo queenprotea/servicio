@@ -71,12 +71,14 @@ public class FXMLSeleccionDeEstudianteDarDeBajaControllador {
     // Método para mostrar detalles del estudiante seleccionado
     @FXML
     private void clickVer(ActionEvent event) {
-        if (! tablaEstudiantes.getSelectionModel().isEmpty()) {
+          Estudiante estudiante = tablaEstudiantes.getSelectionModel().getSelectedItem();
+        if (estudiante != null) {
             try {
                 Stage stage = (Stage) tfBuscador.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLDarDeBajaEstudiante"));
-                FXMLDarDeBajaEstudianteController controller = loader.getController();
-                controller.inicializarValores(tablaEstudiantes.getSelectionModel().getSelectedItem());
+                FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLDarDeBajaEstudiante.fxml"));
+                FXMLDarDeBajaEstudianteController controller = loader.load();
+
+                controller.inicializarValores(estudiante);
                 Parent vista = loader.load();
                 Scene escena = new Scene(vista);
                 stage.setScene(escena);
@@ -110,7 +112,7 @@ public class FXMLSeleccionDeEstudianteDarDeBajaControllador {
                     estudiantes.add(estudiante);
                 }
             }
-            tablaEstudiantes.setItems(EstudianteDAO.obtenerEstudiantes());
+            tablaEstudiantes.setItems(estudiantes);
 
         }catch (SQLException e){
             e.printStackTrace();

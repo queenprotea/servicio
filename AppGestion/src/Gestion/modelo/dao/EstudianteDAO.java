@@ -3,7 +3,9 @@ package Gestion.modelo.dao;
 import Gestion.conexionbd.ConexionBD;
 
 import Gestion.modelo.raw.Estudiante;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 public class EstudianteDAO {
 
@@ -70,9 +73,10 @@ public class EstudianteDAO {
         estudiante.setTelefono(rs.getString("telefono"));
         estudiante.setSemestre(String.valueOf(rs.getInt("semestre")));
         estudiante.setPromedio(String.valueOf(rs.getDouble("promedio")));
-        estudiante.setContrasena(rs.getString("password"));
+        estudiante.setContrasena(rs.getString("contrasena"));
         estudiante.setMatricula(rs.getString("matricula"));
         estudiante.setEstado(rs.getString("estado"));
+        estudiante.setProyecto(ProyectoDAO.obtenerProyectoPorId(rs.getInt("idProyecto")));
 
         return estudiante;
 
@@ -99,7 +103,7 @@ public class EstudianteDAO {
 
     public static ObservableList<Estudiante> obtenerEstudiantes() throws SQLException {
 
-        List<Estudiante> estudiantes = null;
+        ObservableList<Estudiante> estudiantes = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
@@ -109,7 +113,7 @@ public class EstudianteDAO {
                 String sqlSentencia = "SELECT * FROM estudiante";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 ResultSet resultSet = statement.executeQuery();
-                estudiantes = new ArrayList<>();
+
                 while (resultSet.next()) {
                     estudiantes.add(serializarEstudiante(resultSet));
                 }
@@ -121,17 +125,17 @@ public class EstudianteDAO {
             }
         }
 
-        return (ObservableList<Estudiante>) estudiantes;
+        return  estudiantes;
     }
 
     public static void modificarEstudiante(Estudiante estudiante) throws SQLException {
         Connection connection = ConexionBD.abrirConexion();
+        System.out.println(estudiante.getNombre() + estudiante.getIdEstudiante());
         if (connection != null) {
             try {
                 String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
                         " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? ," +
-                        "seleccionproyecto = ?"+
-                        "WHERE idEstudiante = ?";
+                        "seleccionproyecto = ? WHERE idEstudiante = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
                 statement.setString(1, estudiante.getNombre());
                 statement.setString(2, estudiante.getApellidoPaterno());
@@ -142,10 +146,9 @@ public class EstudianteDAO {
                 statement.setString(7, estudiante.getCorreo());
                 statement.setString(8, estudiante.getEstado());
                 statement.setInt(9, estudiante.getCreditos());
-                statement.setString(10, String.valueOf(estudiante.getProyecto().getIdProyecto()));
+                statement.setInt(10, estudiante.getProyecto().getIdProyecto());
                 statement.setString(11, estudiante.getSeleccionProyecto());
                 statement.setInt(12, estudiante.getIdEstudiante());
-
 
 
                 statement.executeUpdate();

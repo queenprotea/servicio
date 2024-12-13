@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import Gestion.modelo.dao.OrganizacionDAO;
 import Gestion.modelo.raw.Estudiante;
 import Gestion.modelo.raw.Organizacion;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -54,7 +55,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
     @FXML
     private Button botonCambios;
 
-    private boolean modoEddicion = true;
+    private boolean modoEddicion = false;
     Organizacion organizacion = new Organizacion();
 
     /**
@@ -75,9 +76,11 @@ public class FXMLModificarOrganizacionController implements Initializable {
     private void clickRegistrar(ActionEvent event) {
         if (!modoEddicion){
             modificarEdicion();
+            modoEddicion = true;
             botonCambios.setText("Guardar");
         }else {
             try {
+                organizacion.setIdOrganizacion(tablaOrganizaciones.getSelectionModel().getSelectedItem().getIdOrganizacion());
                 organizacion.setRazonSocial(tfRazonSocial.getText());
                 organizacion.setDescripcion(taDescripcion.getText());
                 organizacion.setTelefono(tfTelefono.getText());
@@ -89,10 +92,12 @@ public class FXMLModificarOrganizacionController implements Initializable {
                 organizacion.setCiudad(tfCiudad.getText());
 
                 OrganizacionDAO.modificarOrganizacion(organizacion);
+                System.out.println(organizacion.getRazonSocial());
             }catch (SQLException ex) {
                 ex.printStackTrace();
             }
             modificarEdicion();
+            modoEddicion = false;
             botonCambios.setText("Modificar");
         }
     }
@@ -109,14 +114,17 @@ public class FXMLModificarOrganizacionController implements Initializable {
     }
 
     public void inicializarValores(){
-        nombreOrganizacion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        nombreOrganizacion.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
         llenarTablaOrganizaciones();
-
+        modoEddicion = true;
+        modificarEdicion();
+        modoEddicion = false;
         tablaOrganizaciones.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Organizacion>() {
             @Override
             public void changed(ObservableValue<? extends Organizacion> observable, Organizacion oldValue, Organizacion newValue) {
                 if (newValue != null) {
-                    if (modoEddicion == false) {
+                    BooleanProperty editable = tfCalle.editableProperty();
+                    if (!modoEddicion) {
                         actualizarCampos(newValue);
                     }
                 }
@@ -141,7 +149,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
 
     private void modificarEdicion(){
 
-        if (modoEddicion){
+        if (modoEddicion == true){
             tfRazonSocial.setEditable(false);
             taDescripcion.setEditable(false);
             tfTelefono.setEditable(false);
@@ -151,7 +159,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
             tfCiudad.setEditable(false);
             tfEstado.setEditable(false);
             estado.setDisable(true);
-            modoEddicion = false;
+
 
         }else{
             tfRazonSocial.setEditable(true);
@@ -163,7 +171,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
             tfCiudad.setEditable(true);
             tfEstado.setEditable(true);
             estado.setDisable(false);
-            modoEddicion = true;
+
 
         }
 

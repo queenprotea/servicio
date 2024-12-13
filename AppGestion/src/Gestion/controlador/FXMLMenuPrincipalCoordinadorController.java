@@ -112,7 +112,7 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
     private void clickRegistrarModificarEstudiante(ActionEvent event) {
         try {
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMModificarEstudiante.fxml"));
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLModificarEstudiante.fxml"));
             Parent vista = loader.load();
             FXMLModificarEstudianteController controller = loader.getController();
             controller.inicializarValores();
@@ -179,7 +179,7 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
     private void clickDarDeBajaEstudiante(ActionEvent event) {
         try {
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLSeleccionDeEstudainteDarDeBaja.fxml"));
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLSelecionEstudianteDarDeBaja.fxml"));
             Parent vista = loader.load();
             FXMLSeleccionDeEstudianteDarDeBajaControllador controller = loader.getController();
             controller.inicializarValores();

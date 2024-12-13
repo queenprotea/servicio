@@ -76,6 +76,7 @@ public class FXMLModificarEstudianteController implements Initializable {
             botonCambios.setText("Guardar");
         }else {
             try{
+                estudiante.setIdEstudiante(tablaEstudiantes.getSelectionModel().getSelectedItem().getIdEstudiante());
                 estudiante.setNombre(tfNombres.getText());
                 estudiante.setMatricula(tfMatricula.getText());
                 estudiante.setCorreo(tfCorreo.getText());
@@ -84,6 +85,7 @@ public class FXMLModificarEstudianteController implements Initializable {
                 estudiante.setPromedio(tfPromedio.getText());
                 estudiante.setTelefono(tfTelefono.getText());
                 estudiante.setApellidoMaterno(txApellidoMaterno.getText());
+                estudiante.setProyecto(tablaEstudiantes.getSelectionModel().getSelectedItem().getProyecto());
 
                 EstudianteDAO.modificarEstudiante(estudiante);
             }catch (SQLException e){
