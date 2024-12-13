@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLMenuPrincipalCoordinadorController">
+  <children>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="82.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+    <Label layoutX="201.0" layoutY="26.0" text="Menu Principal" textFill="WHITE">
+      <font>
+        <Font size="30.0" />
+      </font>
+    </Label>
+    <ImageView fitHeight="82.0" fitWidth="89.0" layoutX="536.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+      </image>
+    </ImageView>
+    <Button layoutX="428.0" layoutY="179.0" mnemonicParsing="false" onAction="#cliclConsultarExpediente" text="Consultar Expediente" />
+    <Button id="cliclConsultarEstudiante" layoutX="428.0" layoutY="123.0" mnemonicParsing="false" onAction="#cliclConsultarEstudiante" prefWidth="132.0" text="Consultar Estudiante" />
+    <ImageView fitHeight="93.0" fitWidth="124.0" layoutX="14.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
+    <Label layoutX="252.0" layoutY="113.0" text=" Nombre" />
+    <Label layoutX="153.0" layoutY="144.0" text=" Nombre" />
+    <Label layoutX="219.0" layoutY="144.0" text="Apellido Paterno" />
+    <Label layoutX="316.0" layoutY="144.0" text="Apellido Materno" />
+    <Label id="proyecto" layoutX="313.0" layoutY="178.0" text="Especialidad" />
+    <Label id="proyecto" layoutX="176.0" layoutY="171.0" text="Matricula" />
+    <Label id="proyecto" fx:id="matricula" layoutX="176.0" layoutY="194.0" text="Matricula" />
+    <Label id="proyecto" fx:id="especialidad" layoutX="316.0" layoutY="197.0" prefWidth="66.0" text="Especialidad" />
+  </children>
+</AnchorPane>
