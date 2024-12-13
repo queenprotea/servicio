@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.vista.FXMLRegistrarProfesorController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.vista.FXMLRegistrarProfesorController">
   <children>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
       <children>
@@ -46,6 +40,8 @@
         <TextField fx:id="tfCorreo" layoutX="429.0" layoutY="205.0" prefHeight="25.0" prefWidth="135.0" />
         <Button layoutX="497.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickRegistrar" text="Registrar" />
         <Button layoutX="399.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+            <Label layoutX="38.0" layoutY="259.0" text="Contraseña" />
+            <TextField fx:id="tfContrasena" layoutX="160.0" layoutY="255.0" prefHeight="25.0" prefWidth="135.0" />
       </children>
     </AnchorPane>
   </children>
