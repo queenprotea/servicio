@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 
 public class ConexionBD {
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String NOMBRE_BD = "gestionproyectos";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String NOMBRE_BD = "gestionservicio";
     private static final String IP = "localhost";
     private static final String PUERTO = "3306";
 

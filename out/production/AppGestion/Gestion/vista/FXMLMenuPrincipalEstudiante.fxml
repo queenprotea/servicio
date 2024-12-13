@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLMenuPrincipalCoordinadorController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLMenuPrincipalEstudianteController">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c0099" height="82.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
     <Label layoutX="211.0" layoutY="26.0" text="Menu Principal" textFill="WHITE">
@@ -37,9 +31,9 @@
       </image>
     </ImageView>
     <Label layoutX="332.0" layoutY="113.0" text=" Nombre" />
-    <Label layoutX="243.0" layoutY="144.0" text=" Nombre" />
-    <Label layoutX="310.0" layoutY="144.0" text="Apellido Paterno" />
-    <Label layoutX="409.0" layoutY="144.0" text="Apellido Materno" />
+    <Label fx:id="nombre" layoutX="243.0" layoutY="144.0" text=" Nombre" />
+    <Label fx:id="apellidoPaterno" layoutX="310.0" layoutY="144.0" text="Apellido Paterno" />
+    <Label fx:id="apellidoMaterno" layoutX="409.0" layoutY="144.0" text="Apellido Materno" />
     <Label fx:id="proyecto" layoutX="269.0" layoutY="260.0" text="Proyecto" />
     <Label id="proyecto" layoutX="269.0" layoutY="231.0" text="Proyecto" />
     <Label id="proyecto" fx:id="tipoProyecto" layoutX="405.0" layoutY="260.0" text="Tipo Proyecto" />

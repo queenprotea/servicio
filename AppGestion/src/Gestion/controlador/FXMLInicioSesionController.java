@@ -7,6 +7,7 @@ package Gestion.controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import Gestion.modelo.dao.CoordinadorDAO;
@@ -95,9 +96,11 @@ public class FXMLInicioSesionController implements Initializable {
 
     private int obtenerTipoUsuario(String contrasena,String idUsuario) throws SQLException {
         int tipoUsuario = 0;
+        System.out.println(contrasena);
 
-        if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)) != null){
-            if (CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena){
+        if (null != CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario))){
+            System.out.println(contrasena);
+            if (Objects.equals(Objects.requireNonNull(CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario))).getContrasena(), contrasena)){
                 tipoUsuario = 1;
             }
         }
