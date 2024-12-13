@@ -76,10 +76,11 @@ public class FXMLSeleccionDeEstudianteDarDeBajaControllador {
             try {
                 Stage stage = (Stage) tfBuscador.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLDarDeBajaEstudiante.fxml"));
-                FXMLDarDeBajaEstudianteController controller = loader.load();
+                Parent vista = loader.load();
+                FXMLDarDeBajaEstudianteController controller = loader.getController();
 
                 controller.inicializarValores(estudiante);
-                Parent vista = loader.load();
+
                 Scene escena = new Scene(vista);
                 stage.setScene(escena);
                 stage.show();

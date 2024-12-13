@@ -59,7 +59,7 @@ public class FXMLSeleccionProyectoParaAlumnoSSController implements Initializabl
 
             try {
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLAsignarProyectoSSdosController.fxml"));
+                FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLAsignarProyectoSS.fxml"));
                 Parent vista = loader.load();
                 FXMLAsignarProyectoSSdosController controller = loader.getController();
                 controller.inicializarValores(proyecto);

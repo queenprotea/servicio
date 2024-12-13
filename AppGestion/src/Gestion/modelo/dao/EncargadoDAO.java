@@ -20,22 +20,21 @@ import java.util.Observable;
 
 public class EncargadoDAO {
     public static HashMap<String, Object> registrarEncargado(Encargado encargado) throws SQLException {
-
+        System.out.println(encargado.getNombre());
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
 
-                String sqlSentencia = "INSERT INTO encargado (nombre, apellidoPaterno, contrasena, apellidoMaterno, puesto, telefono, correo, organizacion) VALUES (?,?,?,?,?,?,?,?)";
+                String sqlSentencia = "INSERT INTO encargado (nombre, apellidoPaterno, apellidoMaterno, puesto, telefono, correo, idOrganizacion) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 statement.setString(1, encargado.getNombre());
                 statement.setString(2, encargado.getCorreo());
-                statement.setString(3, encargado.getContrasena());
-                statement.setString(4, encargado.getApellidoPaterno());
-                statement.setString(5, encargado.getPuesto());
-                statement.setString(6, encargado.getTelefono());
-                statement.setString(7, encargado.getApellidoMaterno());
-                statement.setString(8, String.valueOf(encargado.getOrganizacion().getIdOrganizacion()));
+                statement.setString(3, encargado.getApellidoPaterno());
+                statement.setString(4, encargado.getPuesto());
+                statement.setString(5, encargado.getTelefono());
+                statement.setString(6, encargado.getApellidoMaterno());
+                statement.setString(7, String.valueOf(encargado.getOrganizacion().getIdOrganizacion()));
                 int resultadoSentencia = statement.executeUpdate();
 
                 if(resultadoSentencia>0){
@@ -49,6 +48,7 @@ public class EncargadoDAO {
             }catch (SQLException e){
                 respuesta.put("Error", true);
                 respuesta.put("mensaje", "Error al registrar");
+                e.printStackTrace();
             }finally {
                 connection.close();
             }

@@ -135,7 +135,7 @@ public class EstudianteDAO {
             try {
                 String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
                         " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? ," +
-                        "seleccionproyecto = ? WHERE idEstudiante = ?";
+                        "seleccionproyecto = ?, estadoProyecto = ? WHERE idEstudiante = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
                 statement.setString(1, estudiante.getNombre());
                 statement.setString(2, estudiante.getApellidoPaterno());
@@ -148,7 +148,8 @@ public class EstudianteDAO {
                 statement.setInt(9, estudiante.getCreditos());
                 statement.setInt(10, estudiante.getProyecto().getIdProyecto());
                 statement.setString(11, estudiante.getSeleccionProyecto());
-                statement.setInt(12, estudiante.getIdEstudiante());
+                statement.setBoolean(12, estudiante.getEstadoProyecto());
+                statement.setInt(13, estudiante.getIdEstudiante());
 
 
                 statement.executeUpdate();
@@ -188,7 +189,7 @@ public class EstudianteDAO {
 
     public static ObservableList<Estudiante> obtenerEstudiantesPP() throws SQLException {
 
-        List<Estudiante> estudiantes = null;
+        ObservableList<Estudiante> estudiantes = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
@@ -198,7 +199,7 @@ public class EstudianteDAO {
                 String sqlSentencia = "SELECT * FROM estudiante WHERE tipoproyecto = 0";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 ResultSet resultSet = statement.executeQuery();
-                estudiantes = new ArrayList<>();
+
                 while (resultSet.next()) {
                     estudiantes.add(serializarEstudiante(resultSet));
                 }
@@ -210,7 +211,7 @@ public class EstudianteDAO {
             }
         }
 
-        return (ObservableList<Estudiante>) estudiantes;
+        return estudiantes;
     }
 
     public static ObservableList<Estudiante> obtenerEstudiantesPorMatricula(String  matricula) throws SQLException {

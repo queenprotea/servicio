@@ -3,6 +3,7 @@ package Gestion.modelo.dao;
 import Gestion.conexionbd.ConexionBD;
 import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Proyecto;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 public class ProyectoDAO {
     public static HashMap<String, Object> registarProyecto(Proyecto proyecto) throws SQLException {
@@ -116,17 +118,20 @@ public class ProyectoDAO {
     }
     public static ObservableList<Proyecto> obtenerProyectosSS() throws SQLException {
 
-        List<Proyecto> proyectos = null;
+        ObservableList<Proyecto> proyectos = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
         if (connection != null) {
             try {
 
-                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = servicio social";
+                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = ?" ;
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+
+                statement.setString(1,"Servicio Social");
                 ResultSet resultSet = statement.executeQuery();
-                proyectos = new ArrayList<>();
+
+
                 while (resultSet.next()) {
                     proyectos.add(serializarProyecto(resultSet));
                 }
@@ -136,7 +141,7 @@ public class ProyectoDAO {
             }
         }
 
-        return (ObservableList<Proyecto>) proyectos;
+        return  proyectos;
     }
 
     public static ObservableList<Proyecto> obtenerProyectosPP() throws SQLException {
