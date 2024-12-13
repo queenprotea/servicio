@@ -21,7 +21,7 @@ public class EstudianteDAO {
         Connection connection = ConexionBD.abrirConexion();
         if (connection!= null){
             try {
-                String sqlsentencia = "INSERT INTO estudiante (nombre, apellidoPaterno, apellidoMaterno, correo, telefono, semestre, promedio, creditos, matricula) VALUES (?,?,?,?,?,?,?,?,?)";
+                String sqlsentencia = "INSERT INTO estudiante (nombre, apellidoPaterno, apellidoMaterno, correo, telefono, semestre, promedio, creditos, matricula, tipoproyecto, contrasena) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
                 statement.setString(1, estudiante.getNombre());
                 statement.setString(2, estudiante.getApellidoPaterno());
@@ -32,6 +32,8 @@ public class EstudianteDAO {
                 statement.setString(7, estudiante.getPromedio());
                 statement.setString(8, String.valueOf(estudiante.getCreditos()));
                 statement.setString(9, estudiante.getMatricula());
+                statement.setString(10, estudiante.getTipoProyecto());
+                statement.setString(11,estudiante.getContrasena());
 
                 int resultadoSentencia = statement.executeUpdate();
                 if(resultadoSentencia>0){
@@ -68,7 +70,7 @@ public class EstudianteDAO {
         estudiante.setTelefono(rs.getString("telefono"));
         estudiante.setSemestre(String.valueOf(rs.getInt("semestre")));
         estudiante.setPromedio(String.valueOf(rs.getDouble("promedio")));
-        estudiante.setPassword(rs.getString("password"));
+        estudiante.setContrasena(rs.getString("password"));
         estudiante.setMatricula(rs.getString("matricula"));
         estudiante.setEstado(rs.getString("estado"));
 
@@ -128,7 +130,7 @@ public class EstudianteDAO {
             try {
                 String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
                         " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? ," +
-                        "proyectosseleccionados = ?"+
+                        "seleccionproyecto = ?"+
                         "WHERE idEstudiante = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
                 statement.setString(1, estudiante.getNombre());

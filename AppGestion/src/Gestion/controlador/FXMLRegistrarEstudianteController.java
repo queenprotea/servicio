@@ -46,6 +46,8 @@ public class FXMLRegistrarEstudianteController implements Initializable {
     @FXML
     private TextField tfTelefono;
     @FXML
+    private TextField tfContrasena;
+    @FXML
     private ComboBox<String> tipoDeProyecto;
 
     /**
@@ -72,6 +74,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
                 estudiante.setSemestre(tfSemestre.getText());
                 estudiante.setCreditos(Integer.parseInt(tfCreditos.getText()));
                 estudiante.setTipoProyecto(tipoDeProyecto.getValue());
+                estudiante.setContrasena(tfContrasena.getText());
 
                 EstudianteDAO.registarEstudiante(estudiante);
                 Mensajes.mostrarAlertaConfirmacion("Confirmacion", "Estudiante registrado correctamente");
@@ -107,6 +110,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
         tfSemestre.setText("");
         tfPromedio.setText("");
         tfTelefono.setText("");
+        tfContrasena.setText("");
     }
 
     private boolean camposValidos(){
@@ -118,7 +122,8 @@ public class FXMLRegistrarEstudianteController implements Initializable {
                 txApellidoMaterno.getText().isEmpty() ||
                 tfSemestre.getText().isEmpty() ||
                 tfPromedio.getText().isEmpty() ||
-                tfTelefono.getText().isEmpty())
+                tfTelefono.getText().isEmpty() ||
+                tfContrasena.getText().isEmpty())
             return false;
 
         return true;
@@ -129,7 +134,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
         stage.close();
     }
 
-    private void inicializarValores(){
+    public void inicializarValores(){
         llenarComboBox();
     }
     

@@ -110,7 +110,7 @@ public class RegistrarSeleccion implements Initializable {
 
     private void llenarTablas(){
         try{
-            tablaProyectos.setItems(ProyectoDAO.obtenerProyectos());
+            tablaProyectos.setItems(ProyectoDAO.obtenerProyectosPP());
         }catch(Exception e){
             e.printStackTrace();
         }

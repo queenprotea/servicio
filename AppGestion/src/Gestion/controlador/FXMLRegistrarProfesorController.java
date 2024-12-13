@@ -38,6 +38,8 @@ public class FXMLRegistrarProfesorController implements Initializable {
     private TextField tfEspecialidad;
     @FXML
     private TextField tfCorreo;
+    @FXML
+    private TextField tfContrasena;
 
     /**
      * Initializes the controller class.
@@ -59,6 +61,7 @@ public class FXMLRegistrarProfesorController implements Initializable {
                 profesor.setEspecialidad(tfEspecialidad.getText());
                 profesor.setTelefono(tfTelefono.getText());
                 profesor.setCorreo(tfCorreo.getText());
+                profesor.setContrasena(tfContrasena.getText());
 
                 ProfesorDAO.registarProfesor(profesor);
                 Mensajes.mostrarAlertaConfirmacion("Confirmacion", "Profesor registrado correctamente");

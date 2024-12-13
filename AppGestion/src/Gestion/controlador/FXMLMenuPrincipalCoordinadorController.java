@@ -81,6 +81,18 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickRegistrarEstudiante(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistrarEstudiante.fxml"));
+            Parent vista = loader.load();
+            FXMLRegistrarEstudianteController controller = loader.getController();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
