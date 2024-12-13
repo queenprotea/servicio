@@ -33,31 +33,28 @@ import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 public class RegistrarSeleccion implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> nombreProyecto;
+    private TableColumn<Proyecto, String> nombreProyecto;
     @FXML
-    private TableColumn<?, ?> organizacion;
+    private TableColumn<Proyecto, String> organizacion;
     @FXML
-    private TableColumn<?, ?> sector;
+    private TableColumn<Proyecto, String> sector;
     @FXML
-    private TableColumn<?, ?> correo;
+    private TableColumn<Proyecto, String> correo;
     @FXML
-    private TableColumn<?, ?> descripcion;
+    private TableColumn<Proyecto, String> descripcion;
     @FXML
     private Button cliclSeleccionar;
     @FXML
     private TableView<Proyecto> tablaProyectos;
 
     private Estudiante estudiante = new Estudiante();
-    List<String> proyectos = new ArrayList<>();
-    private int conteoProyectosSeleccionado = 0;
+    private List<String> proyectosSeleccionados = new ArrayList<>();
+    private int conteoProyectosSeleccionados = 0;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        configurarTablas();
+    }
 
     @FXML
     private void cliclCancelarSeleccion(ActionEvent event) {
@@ -67,51 +64,56 @@ public class RegistrarSeleccion implements Initializable {
 
     @FXML
     private void cliclConfirmarSeleccion(ActionEvent event) {
-        if (conteoProyectosSeleccionado < 3){
-            List<String> proyectos = Arrays.asList(estudiante.getSeleccionProyecto());
-            if (proyectos.get(0) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto()) ||
-                    proyectos.get(1) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto())){
+        if (conteoProyectosSeleccionados < 3) {
+            Proyecto proyectoSeleccionado = tablaProyectos.getSelectionModel().getSelectedItem();
+            if (proyectoSeleccionado != null) {
+                String idProyecto = String.valueOf(proyectoSeleccionado.getIdProyecto());
+                if (!proyectosSeleccionados.contains(idProyecto)) {
+                    proyectosSeleccionados.add(idProyecto);
+                    conteoProyectosSeleccionados++;
+                    estudiante.setSeleccionProyecto(String.join(",", proyectosSeleccionados));
+                    System.out.println("Proyecto agregado: " + proyectoSeleccionado.getNombre());
 
+                    if (conteoProyectosSeleccionados == 3) {
+                        try {
+                            EstudianteDAO.modificarEstudiante(estudiante);
 
-
-            }else{
-
-                proyectos.add(String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto()));
-                String proyectosConcatenados = (proyectos != null && !proyectos.isEmpty())
-                        ? String.join(",", proyectos) : "";
-
-                estudiante.setSeleccionProyecto(proyectosConcatenados);
-                conteoProyectosSeleccionado++;
-                if (conteoProyectosSeleccionado == 3){
-                    try {
-                        EstudianteDAO.modificarEstudiante(estudiante);
-                    }catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+                } else {
+
                 }
+            } else {
+
             }
-        } else if (conteoProyectosSeleccionado == 3) {
-            Mensajes.mostrarAlertaConfirmacion("Alerta","ya se han agregado 3 proyectos");
+        } else {
+
         }
     }
+
     public void inicializarValores(Estudiante estudiante) {
         this.estudiante = estudiante;
-        configurarTablas();
+        if (estudiante.getSeleccionProyecto() != null) {
+            proyectosSeleccionados = new ArrayList<>(Arrays.asList(estudiante.getSeleccionProyecto().split(",")));
+            conteoProyectosSeleccionados = proyectosSeleccionados.size();
+        }
         llenarTablas();
     }
-    private void configurarTablas(){
-        sector.setCellValueFactory(new PropertyValueFactory("sector"));
-        nombreProyecto.setCellValueFactory(new PropertyValueFactory("nombreProyecto"));
-        organizacion.setCellValueFactory(new PropertyValueFactory("organizacion"));
-        correo.setCellValueFactory(new PropertyValueFactory("correo"));
-        descripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
 
+    private void configurarTablas() {
+        sector.setCellValueFactory(new PropertyValueFactory<>("sector"));
+        nombreProyecto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        organizacion.setCellValueFactory(new PropertyValueFactory<>("organizacion"));
+        correo.setCellValueFactory(new PropertyValueFactory<>("correo"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
     }
 
-    private void llenarTablas(){
-        try{
+    private void llenarTablas() {
+        try {
             tablaProyectos.setItems(ProyectoDAO.obtenerProyectosPP());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
