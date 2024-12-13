@@ -13,12 +13,14 @@ import Gestion.modelo.dao.OrganizacionDAO;
 import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Organizacion;
 import Gestion.utilidades.Mensajes;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -40,7 +42,7 @@ public class FXMLRegistrarEncargadoController implements Initializable {
     @FXML
     private TextField TFCorreo;
     @FXML
-    private ComboBox<Organizacion> CBOrganizacion;
+    private ComboBox<Organizacion> CBOrganizaciones;
 
     /**
      * Initializes the controller class.
@@ -68,7 +70,7 @@ public class FXMLRegistrarEncargadoController implements Initializable {
                 encargado.setTelefono(TFTelefono.getText());
                 encargado.setCorreo(TFCorreo.getText());
                 encargado.setEstado("Activo");
-                encargado.setOrganizacion(CBOrganizacion.getValue());
+                encargado.setOrganizacion(CBOrganizaciones.getValue());
 
                 EncargadoDAO.registrarEncargado(encargado);
             }catch (SQLException e){
@@ -80,17 +82,33 @@ public class FXMLRegistrarEncargadoController implements Initializable {
     }
 
     public void inicializarValores() throws SQLException {
-        llenarComboBoxOrganizaciones();
+        cargarOrganizacion();
     }
 
-    private void llenarComboBoxOrganizaciones() throws SQLException {
-        try {
+    public void cargarOrganizacion() {
+        // Recuperar la lista de organizaciones desde el DAO
+        ObservableList<Organizacion> organizaciones = OrganizacionDAO.obtenerOrganizaciones();
 
-            CBOrganizacion.setItems(OrganizacionDAO.obtenerOrganizaciones());
+        // Configurar la lista de organizaciones en el ComboBox
+        CBOrganizaciones.setItems(organizaciones);
+        System.out.println("al emnos entro");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (Organizacion organizacion : organizaciones) {
+            System.out.println("Organización cargada: " + organizacion.getRazonSocial());
         }
+
+        // Configurar un StringConverter para que el ComboBox muestre los nombres
+        CBOrganizaciones.setConverter(new StringConverter<Organizacion>() {
+            @Override
+            public String toString(Organizacion organizacion) {
+                return organizacion != null ? organizacion.getRazonSocial() : " "; // Mostrar el nombre
+            }
+
+            @Override
+            public Organizacion fromString(String string) {
+                return null; // No se utiliza en este caso
+            }
+        });
     }
 
     private boolean validarCampos() {
@@ -100,7 +118,7 @@ public class FXMLRegistrarEncargadoController implements Initializable {
                 TFPuesto.getText().isEmpty() ||
                 TFTelefono.getText().isEmpty() ||
                 TFCorreo.getText().isEmpty() ||
-                CBOrganizacion.getValue() == null)
+                CBOrganizaciones.getValue() == null)
             return false;
 
         return true;

@@ -5,6 +5,7 @@ import Gestion.modelo.raw.Coordinador;
 import Gestion.modelo.raw.Encargado;
 import Gestion.conexionbd.ConexionBD;
 import Gestion.modelo.raw.Organizacion;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 public class EncargadoDAO {
     public static HashMap<String, Object> registrarEncargado(Encargado encargado) throws SQLException {
@@ -65,7 +67,6 @@ public class EncargadoDAO {
         Encargado encargado = new Encargado();
 
         encargado.setNombre(rs.getString("nombre"));
-        encargado.setContrasena(rs.getString("contrasena"));
         encargado.setApellidoPaterno(rs.getString("apellidoPaterno"));
         encargado.setApellidoMaterno(rs.getString("apellidoMaterno"));
         encargado.setPuesto(rs.getString("puesto"));
@@ -122,17 +123,17 @@ public class EncargadoDAO {
 
     public static ObservableList<Encargado> obtenerEncargadosPorOrganizacion(String idOrganizacion) throws SQLException {
 
-        List<Encargado> encargados = null;
+        ObservableList<Encargado> encargados = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
         if (connection != null) {
             try {
 
-            String sqlSentencia = "SELECT * FROM encargado WHERE idOrganizacion = ";
+            String sqlSentencia = "SELECT * FROM encargado WHERE idUsuario = "+ idOrganizacion;
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 ResultSet resultSet = statement.executeQuery();
-                encargados = new ArrayList<>();
+
                 while (resultSet.next()) {
                     encargados.add(serializarEncargado(resultSet));
                 }
@@ -142,7 +143,7 @@ public class EncargadoDAO {
             }
         }
 
-        return (ObservableList<Encargado>) encargados;
+        return encargados;
     }
 
 }

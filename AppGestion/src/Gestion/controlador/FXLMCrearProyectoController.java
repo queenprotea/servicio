@@ -13,11 +13,14 @@ import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Organizacion;
 import Gestion.modelo.raw.Proyecto;
 import Gestion.utilidades.Mensajes;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -92,7 +95,9 @@ public class FXLMCrearProyectoController implements Initializable {
 
     public void InicializarValores(){
         cargarOrganizacion();
-        cbEncargado.setOnAction(event -> actualizarEncargados());
+        cbOrganizacion.valueProperty().addListener((observable, oldValue, newValue) -> {
+            actualizarEncargados(); // Llamar a actualizarEncargados cada vez que cambie la selección
+        });
         chbPracticasProfesionales.setOnAction(event -> {
             if (chbPracticasProfesionales.isSelected()) {
                 chbServicioSocial.setSelected(false);
@@ -105,31 +110,65 @@ public class FXLMCrearProyectoController implements Initializable {
             }
         });
     }
-    public void cargarOrganizacion(){
-        try {
-            cbOrganizacion.setItems(OrganizacionDAO.obtenerOrganizaciones());
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void cargarOrganizacion() {
+        // Recuperar la lista de organizaciones desde el DAO
+        ObservableList<Organizacion> organizaciones = OrganizacionDAO.obtenerOrganizaciones();
+
+        // Configurar la lista de organizaciones en el ComboBox
+        cbOrganizacion.setItems(organizaciones);
+        System.out.println("al emnos entro");
+
+        for (Organizacion organizacion : organizaciones) {
+            System.out.println("Organización cargada: " + organizacion.getRazonSocial());
         }
 
+        // Configurar un StringConverter para que el ComboBox muestre los nombres
+        cbOrganizacion.setConverter(new StringConverter<Organizacion>() {
+            @Override
+            public String toString(Organizacion organizacion) {
+                return organizacion != null ? organizacion.getRazonSocial() : " "; // Mostrar el nombre
+            }
+
+            @Override
+            public Organizacion fromString(String string) {
+                return null; // No se utiliza en este caso
+            }
+        });
     }
-    public void cargarEncargado(){
-        try {
-            cbEncargado.setItems(EncargadoDAO.obtenerEncargados());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
+
     private void actualizarEncargados() {
         Organizacion organizacionSeleccionada = cbOrganizacion.getValue();
         if (organizacionSeleccionada != null) {
             try {
-                cbEncargado.setItems(EncargadoDAO.obtenerEncargadosPorOrganizacion(String.valueOf(organizacionSeleccionada.getIdOrganizacion())));
+                // Obtener encargados de la organización seleccionada
+                ObservableList<Encargado> encargados = EncargadoDAO.obtenerEncargadosPorOrganizacion(String.valueOf(organizacionSeleccionada.getIdOrganizacion()));
+
+                // Configurar los encargados en el ComboBox
+                cbEncargado.setItems(encargados);
+
+                // Imprimir en consola para depuración
+                for (Encargado encargado : encargados) {
+                    System.out.println("Encargado cargado: " + encargado.getNombre());
+                }
+
+                // Configurar StringConverter para mostrar nombres en el ComboBox
+                cbEncargado.setConverter(new StringConverter<Encargado>() {
+                    @Override
+                    public String toString(Encargado encargado) {
+                        return encargado != null ? encargado.getNombre() : " ";
+                    }
+
+                    @Override
+                    public Encargado fromString(String string) {
+                        return null; // No se utiliza en este caso
+                    }
+                });
+
             } catch (SQLException e) {
                 e.printStackTrace();
+                Mensajes.alerta("Error", "No se pudieron cargar los encargados para la organización seleccionada.", Alert.AlertType.ERROR);
             }
-        } else {
-            cbEncargado.getItems().clear();
         }
     }
     private boolean validarCampos(){

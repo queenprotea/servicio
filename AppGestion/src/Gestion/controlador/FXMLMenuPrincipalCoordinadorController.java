@@ -48,7 +48,7 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
         try{
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistrarEncargado.fxml"));
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistarEncargado.fxml"));
             Parent vista = loader.load();
             FXMLRegistrarEncargadoController controller = loader.getController();
             controller.inicializarValores();

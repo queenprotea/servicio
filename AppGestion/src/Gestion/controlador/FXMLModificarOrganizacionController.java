@@ -109,7 +109,8 @@ public class FXMLModificarOrganizacionController implements Initializable {
     }
 
     public void inicializarValores(){
-        nombreOrganizacion.setCellValueFactory(new PropertyValueFactory("nombre"));
+        nombreOrganizacion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        llenarTablaOrganizaciones();
 
         tablaOrganizaciones.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Organizacion>() {
             @Override
@@ -123,11 +124,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
         });
     }
     private void llenarTablaOrganizaciones(){
-        try {
-            tablaOrganizaciones.setItems(OrganizacionDAO.obtenerOrganizaciones());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        tablaOrganizaciones.setItems(OrganizacionDAO.obtenerOrganizaciones());
     }
 
     private void actualizarCampos(Organizacion organizacion){

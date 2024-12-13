@@ -48,7 +48,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
     @FXML
     private TextField tfContrasena;
     @FXML
-    private ComboBox<String> tipoDeProyecto;
+    private ComboBox<String> cbTipoDeProyecto;
 
     /**
      * Initializes the controller class.
@@ -73,7 +73,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
                 estudiante.setPromedio(tfPromedio.getText());
                 estudiante.setSemestre(tfSemestre.getText());
                 estudiante.setCreditos(Integer.parseInt(tfCreditos.getText()));
-                estudiante.setTipoProyecto(tipoDeProyecto.getValue());
+                estudiante.setTipoProyecto(cbTipoDeProyecto.getValue());
                 estudiante.setContrasena(tfContrasena.getText());
 
                 EstudianteDAO.registarEstudiante(estudiante);
@@ -92,7 +92,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
         ObservableList<String> tipoDeProyectos = FXCollections.observableArrayList();
         tipoDeProyectos.add("Servicio social");
         tipoDeProyectos.add("Practicas profesionales");
-        tipoDeProyecto.setItems(tipoDeProyectos);
+        cbTipoDeProyecto.setItems(tipoDeProyectos);
     }
 
     @FXML

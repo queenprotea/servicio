@@ -60,7 +60,7 @@ public class OrganizacionDAO {
         return respuesta;
     }
 
-    public static ObservableList<Organizacion> obtenerOrganizaciones() throws SQLException {
+    public static ObservableList<Organizacion> obtenerOrganizaciones()  {
 
         ObservableList<Organizacion> organizaciones = FXCollections.observableArrayList();
 
@@ -81,13 +81,14 @@ public class OrganizacionDAO {
             }
         }
 
-        return (ObservableList<Organizacion>) organizaciones;
+        return organizaciones;
     }
 
     public static Organizacion serializarOrganizacion(ResultSet resultSet) throws SQLException {
 
         Organizacion organizacion = new Organizacion();
 
+        organizacion.setRazonSocial(resultSet.getString("razonsocial"));
         organizacion.setIdOrganizacion(resultSet.getInt("idOrganizacion"));
         organizacion.setActiva(resultSet.getString("activa"));
         organizacion.setCalle(resultSet.getString("calle"));
@@ -108,7 +109,10 @@ public class OrganizacionDAO {
         PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
         statement.setInt(1, idOrganizacion);
         ResultSet resultSet = statement.executeQuery();
-        organizacion = serializarOrganizacion(resultSet);
+        if (resultSet.next()) {
+            organizacion = serializarOrganizacion(resultSet);
+        }
+
 
         return organizacion;
     }
