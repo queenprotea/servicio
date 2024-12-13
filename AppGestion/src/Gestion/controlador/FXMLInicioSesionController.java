@@ -13,7 +13,11 @@ import java.util.ResourceBundle;
 import Gestion.modelo.dao.CoordinadorDAO;
 import Gestion.modelo.dao.EstudianteDAO;
 import Gestion.modelo.dao.ProfesorDAO;
+import Gestion.modelo.raw.Coordinador;
+import Gestion.modelo.raw.Estudiante;
+import Gestion.modelo.raw.Profesor;
 import Gestion.utilidades.Mensajes;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +47,6 @@ public class FXMLInicioSesionController implements Initializable {
     private void clickIniciarSesion(ActionEvent event) {
         if (camposValidos()){
             try {
-
                 switch (obtenerTipoUsuario(TFContrasena.getText(),TFUsuario.getText())){
                     case 1 :
                         try {
@@ -84,6 +87,7 @@ public class FXMLInicioSesionController implements Initializable {
                         }
                         break;
                     default:
+                        System.out.println();
                         Mensajes.mostrarAlertaConfirmacion("Credenciales incorrectas", "no se encontro al usuario");
                         break;
                 }
@@ -94,24 +98,40 @@ public class FXMLInicioSesionController implements Initializable {
         }
     }
 
-    private int obtenerTipoUsuario(String contrasena,String idUsuario) throws SQLException {
+    private int obtenerTipoUsuario(String contrasena, String idUsuario) throws SQLException {
         int tipoUsuario = 0;
-        System.out.println(contrasena);
 
-        if (null != CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario))){
-            System.out.println(contrasena);
-            if (Objects.equals(Objects.requireNonNull(CoordinadorDAO.obtenerCoordinadirPorId(Integer.parseInt(idUsuario))).getContrasena(), contrasena)){
+        try {
+            int id = Integer.parseInt(idUsuario);
+
+            // Verificar si es Coordinador
+            Coordinador coordinador = CoordinadorDAO.obtenerCoordinadorPorId(id);
+            if (coordinador != null && contrasena.equals(coordinador.getContrasena())) {
                 tipoUsuario = 1;
+                return tipoUsuario;
             }
-        }
-        if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)) != null){
-            if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena){
-                tipoUsuario = 2;
-            }
-        }
-        if (ProfesorDAO.obtenerProfesorPorId(Integer.parseInt(idUsuario)) != null){
 
+            // Verificar si es Estudiante
+            Estudiante estudiante = EstudianteDAO.obtenerEstudiantePorId(id);
+            if (estudiante != null && contrasena.equals(estudiante.getContrasena())) {
+                tipoUsuario = 2;
+                return tipoUsuario;
+            }
+
+            // Verificar si es Profesor
+            Profesor profesor = ProfesorDAO.obtenerProfesorPorId(id);
+            if (profesor != null && contrasena.equals(profesor.getContrasena())) {
+                tipoUsuario = 3;
+                return tipoUsuario;
+            }
+
+        } catch (NumberFormatException e) {
+            System.err.println("El ID de usuario no es un número válido: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Error al acceder a la base de datos: " + e.getMessage());
+            throw e; // Rethrow para manejarlo en niveles superiores si es necesario
         }
+
         return tipoUsuario;
     }
 

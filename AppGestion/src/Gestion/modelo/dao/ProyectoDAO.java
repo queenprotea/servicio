@@ -64,7 +64,7 @@ public class ProyectoDAO {
         proyecto.setCupos(rs.getInt("cupos"));
         proyecto.setEstado(rs.getString("estado"));
         proyecto.setIdProyecto(Integer.parseInt(String.valueOf(rs.getInt("idProyecto"))));
-        proyecto.setCoordinador(CoordinadorDAO.obtenerCoordinadirPorId(rs.getInt("idEncargado")));
+        proyecto.setCoordinador(CoordinadorDAO.obtenerCoordinadorPorId(rs.getInt("idEncargado")));
         proyecto.setOrganizacion(OrganizacionDAO.obtenerOrganizacionPorId(rs.getInt("idOrganizacion")));
         proyecto.setEncargado(EncargadoDAO.obtenerEncargadoPorId(rs.getInt("idEncargado")));
 

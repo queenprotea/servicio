@@ -49,35 +49,36 @@ public class CoordinadorDAO {
     }
 
 
-    private static Coordinador serializarCoordinador(ResultSet rs) throws SQLException{
-
+    private static Coordinador serializarCoordinador(ResultSet rs) {
         Coordinador coordinador = new Coordinador();
-        coordinador.setContrasena(rs.getString("contrasena"));
-        coordinador.setNombre(rs.getString("nombre"));
-        coordinador.setCorreo(rs.getString("correo"));
-        coordinador.setMatricula(rs.getString("matricula"));
-        coordinador.setIdUsuario(rs.getInt("idUsuario"));
-        coordinador.setArea_especialidad(rs.getString("area_especialidad"));
+        try {
 
+            coordinador.setContrasena(rs.getString("contrasena"));
+            coordinador.setNombre(rs.getString("nombre"));
+            coordinador.setCorreo(rs.getString("correo"));
+            coordinador.setMatricula(rs.getString("matricula"));
+            coordinador.setIdUsuario(rs.getInt("idUsuario"));
+            coordinador.setArea_especialidad(rs.getString("area_especialidad"));
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         return coordinador;
 
     }
 
-    public static Coordinador obtenerCoordinadirPorId(int idCoordinador) throws SQLException {
-
+    public static Coordinador obtenerCoordinadorPorId(int idCoordinador) throws SQLException {
+        Coordinador coordinador = new Coordinador();
         try {
-
-            Coordinador coordinador = new Coordinador();
-
-            String sqlSentencia = "SELECT * FROM organizacion WHERE idOrganizacion = ?";
+            String sqlSentencia = "SELECT * FROM coordinador WHERE idUsuario = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
             statement.setInt(1, idCoordinador);
             ResultSet resultSet = statement.executeQuery();
             coordinador = serializarCoordinador(resultSet);
 
-            return coordinador;
+
         }catch (SQLException e){
-            return null;
+            e.printStackTrace();
         }
+        return coordinador;
     }
 }
