@@ -82,7 +82,7 @@ public class FXMLSeleccionProyectoParaAlumnoSSController implements Initializabl
 
     private void llenarTabla(){
         try{
-            tablaProyectos.setItems(ProyectoDAO.obtenerProyectos());
+            tablaProyectos.setItems(ProyectoDAO.obtenerProyectosSS());
         } catch (SQLException e) {
             e.printStackTrace();
         }

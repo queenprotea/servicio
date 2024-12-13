@@ -15,6 +15,10 @@ public class Estudiante {
     private String promedio;
     private int creditos;
     private Proyecto proyecto;
+    private String seleccionProyecto;
+    private String tipoProyecto;
+    private boolean estadoProyecto;
+
 
     public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio, int creditos) {
         this.idEstudiante = idEstudiante;
@@ -121,6 +125,7 @@ public class Estudiante {
         this.telefono = telefono;
     }
 
+
     public void setCreditos(int creditos) {
         this.creditos = creditos;
     }
@@ -135,5 +140,28 @@ public class Estudiante {
 
     public Proyecto getProyecto() {
         return proyecto;
+    }
+
+    public void setSeleccionProyecto(String seleccionProyecto) {
+        this.seleccionProyecto = seleccionProyecto;
+    }
+
+    public String getSeleccionProyecto() {
+        return seleccionProyecto;
+    }
+
+    public void setTipoProyecto(String tipoProyecto) {
+        this.tipoProyecto = tipoProyecto;
+    }
+
+    public String getTipoProyecto() {
+        return tipoProyecto;
+    }
+
+    public void setEstadoProyecto(boolean estadoProyecto) {
+        this.estadoProyecto = estadoProyecto;
+    }
+    public boolean getEstadoProyecto() {
+        return estadoProyecto;
     }
 }

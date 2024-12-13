@@ -68,11 +68,14 @@ public class FXLMCrearProyectoController implements Initializable {
                 proyecto.setNombre(tfNombreProyecto.getText());
                 proyecto.setOrganizacion(cbOrganizacion.getValue());
                 proyecto.setEncargado(cbEncargado.getValue());
-                proyecto.setTipo(chbPracticasProfesionales.isSelected() ? "Practicas Profesionales" : "Servicio Social");
                 proyecto.setCupos(Integer.parseInt(tfCupos.getText()));
                 proyecto.setFechaFin(dpFechaFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 proyecto.setFechaInicio(dpFechaInicio.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
+                if (chbPracticasProfesionales.isSelected()) {
+                    proyecto.setTipo("Practicas profesionales");
+                } else if (chbServicioSocial.isSelected()) {
+                    proyecto.setTipo("Servicio social");
+                }
                 ProyectoDAO.registarProyecto(proyecto);
                 Mensajes.mostrarAlertaConfirmacion("Confirmacion", "Proyecto registrado correctamente");
                 limpiarCampos();
@@ -88,8 +91,19 @@ public class FXLMCrearProyectoController implements Initializable {
     }
 
     public void InicializarValores(){
-        cargarEncargado();
         cargarOrganizacion();
+        cbEncargado.setOnAction(event -> actualizarEncargados());
+        chbPracticasProfesionales.setOnAction(event -> {
+            if (chbPracticasProfesionales.isSelected()) {
+                chbServicioSocial.setSelected(false);
+            }
+        });
+
+        chbServicioSocial.setOnAction(event -> {
+            if (chbServicioSocial.isSelected()) {
+                chbPracticasProfesionales.setSelected(false);
+            }
+        });
     }
     public void cargarOrganizacion(){
         try {
@@ -104,6 +118,18 @@ public class FXLMCrearProyectoController implements Initializable {
             cbEncargado.setItems(EncargadoDAO.obtenerEncargados());
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    private void actualizarEncargados() {
+        Organizacion organizacionSeleccionada = cbOrganizacion.getValue();
+        if (organizacionSeleccionada != null) {
+            try {
+                cbEncargado.setItems(EncargadoDAO.obtenerEncargadosPorOrganizacion(String.valueOf(organizacionSeleccionada.getIdOrganizacion())));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            cbEncargado.getItems().clear();
         }
     }
     private boolean validarCampos(){

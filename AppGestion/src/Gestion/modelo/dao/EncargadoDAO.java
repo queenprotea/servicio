@@ -120,5 +120,29 @@ public class EncargadoDAO {
         return (ObservableList<Encargado>) encargados;
     }
 
+    public static ObservableList<Encargado> obtenerEncargadosPorOrganizacion(String idOrganizacion) throws SQLException {
+
+        List<Encargado> encargados = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+            String sqlSentencia = "SELECT * FROM encargado WHERE idOrganizacion = ";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                encargados = new ArrayList<>();
+                while (resultSet.next()) {
+                    encargados.add(serializarEncargado(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Encargado>) encargados;
+    }
 
 }

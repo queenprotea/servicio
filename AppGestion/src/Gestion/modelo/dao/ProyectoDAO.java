@@ -110,5 +110,54 @@ public class ProyectoDAO {
 
         return (ObservableList<Proyecto>) proyectos;
     }
+    public static ObservableList<Proyecto> obtenerProyectosSS() throws SQLException {
+
+        List<Proyecto> proyectos = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = servicio social";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                proyectos = new ArrayList<>();
+                while (resultSet.next()) {
+                    proyectos.add(serializarProyecto(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Proyecto>) proyectos;
+    }
+
+    public static ObservableList<Proyecto> obtenerProyectosPP() throws SQLException {
+
+        List<Proyecto> proyectos = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = Practicas profesionales";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                proyectos = new ArrayList<>();
+                while (resultSet.next()) {
+                    proyectos.add(serializarProyecto(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return (ObservableList<Proyecto>) proyectos;
+    }
 
 }

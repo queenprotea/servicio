@@ -11,9 +11,12 @@ import java.util.ResourceBundle;
 import Gestion.modelo.dao.EstudianteDAO;
 import Gestion.modelo.raw.Estudiante;
 import Gestion.utilidades.Mensajes;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -42,6 +45,8 @@ public class FXMLRegistrarEstudianteController implements Initializable {
     private TextField tfPromedio;
     @FXML
     private TextField tfTelefono;
+    @FXML
+    private ComboBox<String> tipoDeProyecto;
 
     /**
      * Initializes the controller class.
@@ -66,6 +71,7 @@ public class FXMLRegistrarEstudianteController implements Initializable {
                 estudiante.setPromedio(tfPromedio.getText());
                 estudiante.setSemestre(tfSemestre.getText());
                 estudiante.setCreditos(Integer.parseInt(tfCreditos.getText()));
+                estudiante.setTipoProyecto(tipoDeProyecto.getValue());
 
                 EstudianteDAO.registarEstudiante(estudiante);
                 Mensajes.mostrarAlertaConfirmacion("Confirmacion", "Estudiante registrado correctamente");
@@ -78,6 +84,12 @@ public class FXMLRegistrarEstudianteController implements Initializable {
             }
         }
 
+    }
+    private void llenarComboBox(){
+        ObservableList<String> tipoDeProyectos = FXCollections.observableArrayList();
+        tipoDeProyectos.add("Servicio social");
+        tipoDeProyectos.add("Practicas profesionales");
+        tipoDeProyecto.setItems(tipoDeProyectos);
     }
 
     @FXML
@@ -117,5 +129,8 @@ public class FXMLRegistrarEstudianteController implements Initializable {
         stage.close();
     }
 
+    private void inicializarValores(){
+        llenarComboBox();
+    }
     
 }

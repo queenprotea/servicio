@@ -67,6 +67,7 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
         if (! tablaAlumnosSinAsignar.getSelectionModel().isEmpty()){
             estudiantes.add(tablaAlumnosSinAsignar.getSelectionModel().getSelectedItem());
             actualizarTablaEstudiante();
+
         }
     }
 
@@ -81,6 +82,7 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
         try{
             for(Estudiante estudiante: estudiantes){
                 estudiante.setProyecto(proyecto);
+                estudiante.setEstadoProyecto(true);
                 EstudianteDAO.modificarEstudiante(estudiante);
             }
         }catch(SQLException ex){
@@ -98,7 +100,14 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
     }
     private void llenarTablaEstudiante(){
         try {
-            tablaAlumnosSinAsignar.setItems(EstudianteDAO.obtenerEstudiantes());
+            ObservableList<Estudiante> estudiantesValidos = FXCollections.observableArrayList();
+            for(Estudiante estudiante: EstudianteDAO.obtenerEstudiantesPP()){
+                if (estudiante.getEstadoProyecto() == false){
+                    estudiantesValidos.add(estudiante);
+                }
+            }
+
+            tablaAlumnosSinAsignar.setItems(estudiantesValidos);
         } catch (SQLException e) {
             e.printStackTrace();
             Mensajes.mostrarAlertaConfirmacion("error","Error al conectra a la base de datos");
