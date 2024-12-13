@@ -94,6 +94,7 @@ public class FXMLAsignarProyectoPPController implements Initializable {
     // Método para inicializar los valores del estudiante (llamado desde otro controlador)
     public void inicializarEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
+        cargarProyectos();
         cargarInformacionEstudiante(estudiante);
         tablaProyectos.setOnMouseClicked(event -> actualizarProyectoAsignado());
     }
