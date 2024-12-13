@@ -91,9 +91,8 @@ public class FXLMCrearProyectoController implements Initializable {
     }
 
     public void InicializarValores(){
-        cargarEncargado();
         cargarOrganizacion();
-
+        cbEncargado.setOnAction(event -> actualizarEncargados());
         chbPracticasProfesionales.setOnAction(event -> {
             if (chbPracticasProfesionales.isSelected()) {
                 chbServicioSocial.setSelected(false);
@@ -119,6 +118,18 @@ public class FXLMCrearProyectoController implements Initializable {
             cbEncargado.setItems(EncargadoDAO.obtenerEncargados());
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    private void actualizarEncargados() {
+        Organizacion organizacionSeleccionada = cbOrganizacion.getValue();
+        if (organizacionSeleccionada != null) {
+            try {
+                cbEncargado.setItems(EncargadoDAO.obtenerEncargadosPorOrganizacion(String.valueOf(organizacionSeleccionada.getIdOrganizacion())));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            cbEncargado.getItems().clear();
         }
     }
     private boolean validarCampos(){

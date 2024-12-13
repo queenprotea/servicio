@@ -83,11 +83,7 @@ public class FXMLDarDeBajaEstudianteController {
         correo.setText(estudiante.getCorreo());
         telefono.setText(estudiante.getTelefono());
         semestre.setText(estudiante.getSemestre());
-        if(estudiante.getTipoProyecto() == 1){
-            tipoProyecto.setText("Servicio social");
-        }else {
-            tipoProyecto.setText("Practicas profesionales");
-        }
+        tipoProyecto.setText(estudiante.getTipoProyecto());
         proyecto.setText(estudiante.getProyecto().getNombre());
         razonSocial.setText(estudiante.getProyecto().getNombre());
         fechaInicio.setText(estudiante.getProyecto().getFechaInicio());

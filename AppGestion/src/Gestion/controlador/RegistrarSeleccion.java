@@ -6,6 +6,7 @@ package Gestion.controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,12 +68,19 @@ public class RegistrarSeleccion implements Initializable {
     @FXML
     private void cliclConfirmarSeleccion(ActionEvent event) {
         if (conteoProyectosSeleccionado < 3){
-            if (estudiante.getSeleccionProyecto().get(0) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto()) ||
-                estudiante.getSeleccionProyecto().get(1) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto())){
+            List<String> proyectos = Arrays.asList(estudiante.getSeleccionProyecto());
+            if (proyectos.get(0) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto()) ||
+                    proyectos.get(1) == String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto())){
+
+
 
             }else{
+
                 proyectos.add(String.valueOf(tablaProyectos.getSelectionModel().getSelectedItem().getIdProyecto()));
-                estudiante.setSeleccionProyecto(proyectos);
+                String proyectosConcatenados = (proyectos != null && !proyectos.isEmpty())
+                        ? String.join(",", proyectos) : "";
+
+                estudiante.setSeleccionProyecto(proyectosConcatenados);
                 conteoProyectosSeleccionado++;
                 if (conteoProyectosSeleccionado == 3){
                     try {

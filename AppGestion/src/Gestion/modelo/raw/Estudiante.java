@@ -1,7 +1,5 @@
 package Gestion.modelo.raw;
 
-import java.util.List;
-
 public class Estudiante {
 
     private int idEstudiante;
@@ -18,7 +16,7 @@ public class Estudiante {
     private int creditos;
     private Proyecto proyecto;
     private String seleccionProyecto;
-    private int tipoProyecto;
+    private String tipoProyecto;
     private boolean estadoProyecto;
 
 
@@ -152,11 +150,11 @@ public class Estudiante {
         return seleccionProyecto;
     }
 
-    public void setTipoProyecto(int tipoProyecto) {
+    public void setTipoProyecto(String tipoProyecto) {
         this.tipoProyecto = tipoProyecto;
     }
 
-    public int getTipoProyecto() {
+    public String getTipoProyecto() {
         return tipoProyecto;
     }
 
