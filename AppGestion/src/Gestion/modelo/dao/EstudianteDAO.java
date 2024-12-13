@@ -71,12 +71,12 @@ public class EstudianteDAO {
         estudiante.setApellidoMaterno(rs.getString("apellidoMaterno"));
         estudiante.setCorreo(rs.getString("correo"));
         estudiante.setTelefono(rs.getString("telefono"));
-        estudiante.setSemestre(String.valueOf(rs.getInt("semestre")));
+        estudiante.setSemestre(rs.getString("semestre"));
         estudiante.setPromedio(String.valueOf(rs.getDouble("promedio")));
         estudiante.setContrasena(rs.getString("contrasena"));
         estudiante.setMatricula(rs.getString("matricula"));
         estudiante.setEstado(rs.getString("estado"));
-        estudiante.setProyecto(ProyectoDAO.obtenerProyectoPorId(rs.getInt("idProyecto")));
+        estudiante.setProyecto(ProyectoDAO.obtenerProyectoPorId(rs.getString("idProyecto")));
 
         return estudiante;
 

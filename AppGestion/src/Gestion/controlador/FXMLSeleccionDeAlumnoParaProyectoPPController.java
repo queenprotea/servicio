@@ -69,9 +69,10 @@ public class FXMLSeleccionDeAlumnoParaProyectoPPController implements Initializa
             try {
                 Stage stage = (Stage) tfBuscador.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLAsignarProyectoPP.fxml"));
+                Parent vista = loader.load();
                 FXMLAsignarProyectoPPController controller = loader.getController();
                 controller.inicializarEstudiante(tablaEstudiantes.getSelectionModel().getSelectedItem());
-                Parent vista = loader.load();
+
                 Scene escena = new Scene(vista);
                 stage.setScene(escena);
                 stage.show();
@@ -88,7 +89,7 @@ public class FXMLSeleccionDeAlumnoParaProyectoPPController implements Initializa
     }
 
     private void configurarTabla(){
-        columnaMatriculaEstudiante.setCellValueFactory(new PropertyValueFactory("nombre"));
+        columnaNombreEstudiante.setCellValueFactory(new PropertyValueFactory("nombre"));
         columnaMatriculaEstudiante.setCellValueFactory(new PropertyValueFactory("matricula"));
     }
     private void llenarTabla(){

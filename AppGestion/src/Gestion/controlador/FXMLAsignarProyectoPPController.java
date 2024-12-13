@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ public class FXMLAsignarProyectoPPController implements Initializable {
     private TableView<Proyecto> tablaProyectos;
 
     @FXML
-    private TableColumn<Proyecto, String> Proyectos; // Columna de Proyectos
+    private TableColumn<Proyecto, String> columnaProyectos; // Columna de Proyectos
 
     @FXML
     private Label nombreEstudainte;
@@ -58,19 +57,34 @@ public class FXMLAsignarProyectoPPController implements Initializable {
     // Método para cargar los proyectos disponibles en la tabl
     private void cargarProyectos() {
         // Implementar la lógica para cargar proyectos en la tabla
+        ObservableList<Proyecto> proyectosParaTabla = FXCollections.observableArrayList();
+
         try {
-            String proyectos = estudiante.getSeleccionProyecto();
-            List<String> proyectosSeleccionadosPorElEstudainte = Arrays.asList(proyectos.split(","));
-            ObservableList<Proyecto> proyectosParaTabla = FXCollections.observableArrayList();
-            for (String proyecto : proyectosSeleccionadosPorElEstudainte) {
-                proyectosParaTabla.add(ProyectoDAO.obtenerProyectoPorId(Integer.parseInt(proyecto)));
+            System.out.println(estudiante.getSeleccionProyecto());
+            if (estudiante.getSeleccionProyecto() != null) {
+                String proyectos = estudiante.getSeleccionProyecto();
+                System.out.println(proyectos);
+                List<String> proyectosSeleccionadosPorElEstudainte = Arrays.asList(proyectos.split(","));
+
+
+                for (String proyecto : proyectosSeleccionadosPorElEstudainte) {
+                    System.out.println(proyecto);
+                    proyectosParaTabla.add(ProyectoDAO.obtenerProyectoPorId(proyecto));
+                }
+                proyectosParaTabla.addAll(ProyectoDAO.obtenerProyectosPP());
+            }else {
+                proyectosParaTabla = ProyectoDAO.obtenerProyectosPP();
             }
-            proyectosParaTabla.addAll(ProyectoDAO.obtenerProyectosPP());
+
 
             tablaProyectos.setItems( proyectosParaTabla);
+
+
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     // Método para asignar un proyecto al estudiante
@@ -99,6 +113,7 @@ public class FXMLAsignarProyectoPPController implements Initializable {
         this.estudiante = estudiante;
         cargarProyectos();
         cargarInformacionEstudiante(estudiante);
+        columnaProyectos.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tablaProyectos.setOnMouseClicked(event -> actualizarProyectoAsignado());
     }
 

@@ -1,7 +1,6 @@
 package Gestion.modelo.dao;
 
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Proyecto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +27,7 @@ public class ProyectoDAO {
                 statement.setString(2, proyecto.getDescripcion());
                 statement.setString(3, proyecto.getFechaInicio());
                 statement.setString(4, proyecto.getFechaFin());
-                statement.setString(5,proyecto.getEncargado().getNombre());
+                statement.setString(5, String.valueOf(proyecto.getEncargado().getIdUsuario()));
                 statement.setInt(6, proyecto.getCupos());
                 statement.setString(7, proyecto.getTipo());
                 int resultadoSentencia = statement.executeUpdate();
@@ -42,6 +41,7 @@ public class ProyectoDAO {
             }catch (SQLException e){
                 respuesta.put("Error", true);
                 respuesta.put("mensaje", "Error al registrar");
+                e.printStackTrace();
             }finally {
                 connection.close();
             }
@@ -74,13 +74,13 @@ public class ProyectoDAO {
 
     }
 
-    public static Proyecto obtenerProyectoPorId(int idProyecto) throws SQLException {
+    public static Proyecto obtenerProyectoPorId(String idProyecto) throws SQLException {
         Proyecto proyecto = new Proyecto();
         try {
 
             String sqlSentencia = "SELECT * FROM proyecto WHERE idProyecto= ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
-            statement.setInt(1, idProyecto);
+            statement.setString(1, idProyecto);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
@@ -146,17 +146,18 @@ public class ProyectoDAO {
 
     public static ObservableList<Proyecto> obtenerProyectosPP() throws SQLException {
 
-        List<Proyecto> proyectos = null;
+        ObservableList<Proyecto> proyectos = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
         if (connection != null) {
             try {
 
-                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = Practicas profesionales";
+                String sqlSentencia = "SELECT * FROM proyecto WHERE tipo = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                statement.setString(1,"Practicas Profesionales");
                 ResultSet resultSet = statement.executeQuery();
-                proyectos = new ArrayList<>();
+
                 while (resultSet.next()) {
                     proyectos.add(serializarProyecto(resultSet));
                 }
@@ -166,7 +167,7 @@ public class ProyectoDAO {
             }
         }
 
-        return (ObservableList<Proyecto>) proyectos;
+        return  proyectos;
     }
 
 }
