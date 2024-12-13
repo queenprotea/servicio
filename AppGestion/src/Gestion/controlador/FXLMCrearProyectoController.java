@@ -68,11 +68,14 @@ public class FXLMCrearProyectoController implements Initializable {
                 proyecto.setNombre(tfNombreProyecto.getText());
                 proyecto.setOrganizacion(cbOrganizacion.getValue());
                 proyecto.setEncargado(cbEncargado.getValue());
-                proyecto.setTipo(chbPracticasProfesionales.isSelected() ? "Practicas Profesionales" : "Servicio Social");
                 proyecto.setCupos(Integer.parseInt(tfCupos.getText()));
                 proyecto.setFechaFin(dpFechaFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 proyecto.setFechaInicio(dpFechaInicio.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
+                if (chbPracticasProfesionales.isSelected()) {
+                    proyecto.setTipo("Practicas profesionales");
+                } else if (chbServicioSocial.isSelected()) {
+                    proyecto.setTipo("Servicio social");
+                }
                 ProyectoDAO.registarProyecto(proyecto);
                 Mensajes.mostrarAlertaConfirmacion("Confirmacion", "Proyecto registrado correctamente");
                 limpiarCampos();
@@ -90,6 +93,18 @@ public class FXLMCrearProyectoController implements Initializable {
     public void InicializarValores(){
         cargarEncargado();
         cargarOrganizacion();
+
+        chbPracticasProfesionales.setOnAction(event -> {
+            if (chbPracticasProfesionales.isSelected()) {
+                chbServicioSocial.setSelected(false);
+            }
+        });
+
+        chbServicioSocial.setOnAction(event -> {
+            if (chbServicioSocial.isSelected()) {
+                chbPracticasProfesionales.setSelected(false);
+            }
+        });
     }
     public void cargarOrganizacion(){
         try {

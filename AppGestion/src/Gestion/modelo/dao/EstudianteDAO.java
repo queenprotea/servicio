@@ -127,7 +127,7 @@ public class EstudianteDAO {
         if (connection != null) {
             try {
                 String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
-                        " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? " +
+                        " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? ," +
                         "proyectosseleccionados = ?"+
                         "WHERE idEstudiante = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
@@ -141,11 +141,7 @@ public class EstudianteDAO {
                 statement.setString(8, estudiante.getEstado());
                 statement.setInt(9, estudiante.getCreditos());
                 statement.setString(10, String.valueOf(estudiante.getProyecto().getIdProyecto()));
-
-                String proyectosConcantenados = (estudiante.getSeleccionProyecto() != null && !estudiante.getSeleccionProyecto().isEmpty())
-                                                ? String.join(", ", estudiante.getSeleccionProyecto()) : "";
-
-                statement.setString(11, proyectosConcantenados);
+                statement.setString(11, estudiante.getSeleccionProyecto());
                 statement.setInt(12, estudiante.getIdEstudiante());
 
 
@@ -157,6 +153,86 @@ public class EstudianteDAO {
                 connection.close();
             }
         }
+    }
+    public static ObservableList<Estudiante> obtenerEstudiantesSS() throws SQLException {
+
+        List<Estudiante> estudiantes = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM estudiante WHERE tipoproyecto = 1";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                estudiantes = new ArrayList<>();
+                while (resultSet.next()) {
+                    estudiantes.add(serializarEstudiante(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                connection.close();
+            }
+        }
+
+        return (ObservableList<Estudiante>) estudiantes;
+    }
+
+    public static ObservableList<Estudiante> obtenerEstudiantesPP() throws SQLException {
+
+        List<Estudiante> estudiantes = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM estudiante WHERE tipoproyecto = 0";
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                estudiantes = new ArrayList<>();
+                while (resultSet.next()) {
+                    estudiantes.add(serializarEstudiante(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                connection.close();
+            }
+        }
+
+        return (ObservableList<Estudiante>) estudiantes;
+    }
+
+    public static ObservableList<Estudiante> obtenerEstudiantesPorMatricula(String  matricula) throws SQLException {
+
+        List<Estudiante> estudiantes = null;
+
+        Connection connection = ConexionBD.abrirConexion();
+
+        if (connection != null) {
+            try {
+
+                String sqlSentencia = "SELECT * FROM estudiante WHERE matricula = "+ matricula;
+                PreparedStatement statement = connection.prepareStatement(sqlSentencia);
+                ResultSet resultSet = statement.executeQuery();
+                estudiantes = new ArrayList<>();
+                while (resultSet.next()) {
+                    estudiantes.add(serializarEstudiante(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                connection.close();
+            }
+        }
+
+        return (ObservableList<Estudiante>) estudiantes;
     }
 
 }

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLAsignarProyectoPPController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLAsignarProyectoPPController">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003d99" height="61.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
     <Text fill="WHITE" fontSmoothingType="LCD" layoutX="152.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ASIGNAR PROYECTO">
@@ -16,9 +17,9 @@
         <Font name="Arial Rounded MT Bold" size="28.0" />
       </font>
     </Text>
-    <TableView layoutX="36.0" layoutY="83.0" prefHeight="255.0" prefWidth="140.0">
+    <TableView fx:id="tablaProyectos" layoutX="36.0" layoutY="83.0" prefHeight="255.0" prefWidth="140.0">
       <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Proyectos disponibles" fx:id="Proyectos" />
+        <TableColumn fx:id="columnaProyectos" maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Proyectos disponibles" />
       </columns>
     </TableView>
     <Button layoutX="513.0" layoutY="366.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />

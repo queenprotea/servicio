@@ -99,7 +99,7 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
     }
     private void llenarTablaEstudiante(){
         try {
-            tablaAlumnosSinAsignar.setItems(EstudianteDAO.obtenerEstudiantes());
+            tablaAlumnosSinAsignar.setItems(EstudianteDAO.obtenerEstudiantesSS());
         } catch (SQLException e) {
             e.printStackTrace();
             Mensajes.mostrarAlertaConfirmacion("error","Error al conectra a la base de datos");

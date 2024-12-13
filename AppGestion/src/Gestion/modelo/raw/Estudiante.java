@@ -17,7 +17,10 @@ public class Estudiante {
     private String promedio;
     private int creditos;
     private Proyecto proyecto;
-    private List<String> seleccionProyecto;
+    private String seleccionProyecto;
+    private int tipoProyecto;
+    private boolean estadoProyecto;
+
 
     public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio, int creditos) {
         this.idEstudiante = idEstudiante;
@@ -141,12 +144,26 @@ public class Estudiante {
         return proyecto;
     }
 
-    public void setSeleccionProyecto(List<String> seleccionProyecto) {
+    public void setSeleccionProyecto(String seleccionProyecto) {
         this.seleccionProyecto = seleccionProyecto;
     }
 
-    public List<String> getSeleccionProyecto() {
+    public String getSeleccionProyecto() {
         return seleccionProyecto;
     }
 
+    public void setTipoProyecto(int tipoProyecto) {
+        this.tipoProyecto = tipoProyecto;
+    }
+
+    public int getTipoProyecto() {
+        return tipoProyecto;
+    }
+
+    public void setEstadoProyecto(boolean estadoProyecto) {
+        this.estadoProyecto = estadoProyecto;
+    }
+    public boolean getEstadoProyecto() {
+        return estadoProyecto;
+    }
 }
