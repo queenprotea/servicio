@@ -16,33 +16,37 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLMenuPrincipalCoordinadorController">
   <children>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="82.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-    <Label layoutX="201.0" layoutY="26.0" text="Menu Principal" textFill="WHITE">
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c0099" height="82.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+    <Label layoutX="211.0" layoutY="26.0" text="Menu Principal" textFill="WHITE">
       <font>
-        <Font size="30.0" />
+        <Font name="Arial Rounded MT Bold" size="30.0" />
       </font>
     </Label>
-    <ImageView fitHeight="82.0" fitWidth="89.0" layoutX="536.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="71.43624877929688" fitWidth="55.32333086067302" layoutX="536.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
       </image>
     </ImageView>
-    <Button layoutX="420.0" layoutY="114.0" mnemonicParsing="false" onAction="#cliclRegistrarSeleccion" prefWidth="131.0" text="Registrar Seleccion" />
-    <Button layoutX="418.0" layoutY="186.0" mnemonicParsing="false" onAction="#clicSubirReporte" prefWidth="132.0" text="Subir Reporte" />
-    <Button layoutX="420.0" layoutY="320.0" mnemonicParsing="false" onAction="#cliclConsultarExpediente" text="Consultar Expediente" />
-    <Button layoutX="418.0" layoutY="254.0" mnemonicParsing="false" onAction="#cliclSubirDocumentos" prefWidth="132.0" text="Subir Documentos" />
-    <ImageView fitHeight="93.0" fitWidth="124.0" layoutX="22.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" />
-    <Label layoutX="252.0" layoutY="113.0" text=" Nombre" />
-    <Label layoutX="153.0" layoutY="144.0" text=" Nombre" />
-    <Label layoutX="219.0" layoutY="144.0" text="Apellido Paterno" />
-    <Label layoutX="316.0" layoutY="144.0" text="Apellido Materno" />
-    <Label fx:id="proyecto" layoutX="187.0" layoutY="252.0" text="Proyecto" />
-    <Label id="proyecto" layoutX="188.0" layoutY="226.0" text="Proyecto" />
-    <Label id="proyecto" fx:id="tipoProyecto" layoutX="300.0" layoutY="253.0" text="Tipo Proyecto" />
-    <Label id="proyecto" layoutX="300.0" layoutY="226.0" text="Tipo Proyecto" />
-    <Label id="proyecto" layoutX="313.0" layoutY="178.0" text="Semestre" />
-    <Label id="proyecto" layoutX="187.0" layoutY="175.0" text="Matricula" />
-    <Label id="proyecto" fx:id="matricula" layoutX="188.0" layoutY="197.0" text="Matricula" />
-    <Label id="proyecto" fx:id="semestre" layoutX="313.0" layoutY="197.0" text="Semestre" />
+    <Button layoutX="112.0" layoutY="321.0" mnemonicParsing="false" onAction="#cliclRegistrarSeleccion" prefWidth="131.0" text="Registrar Seleccion" />
+    <Button layoutX="112.0" layoutY="354.0" mnemonicParsing="false" onAction="#clicSubirReporte" prefWidth="132.0" text="Subir Reporte" />
+    <Button layoutX="356.0" layoutY="354.0" mnemonicParsing="false" onAction="#cliclConsultarExpediente" text="Consultar Expediente" />
+    <Button layoutX="356.0" layoutY="321.0" mnemonicParsing="false" onAction="#cliclSubirDocumentos" prefWidth="132.0" text="Subir Documentos" />
+    <ImageView fitHeight="107.0" fitWidth="107.0" layoutX="55.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../recursos/img.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="332.0" layoutY="113.0" text=" Nombre" />
+    <Label layoutX="243.0" layoutY="144.0" text=" Nombre" />
+    <Label layoutX="310.0" layoutY="144.0" text="Apellido Paterno" />
+    <Label layoutX="409.0" layoutY="144.0" text="Apellido Materno" />
+    <Label fx:id="proyecto" layoutX="269.0" layoutY="260.0" text="Proyecto" />
+    <Label id="proyecto" layoutX="269.0" layoutY="231.0" text="Proyecto" />
+    <Label id="proyecto" fx:id="tipoProyecto" layoutX="405.0" layoutY="260.0" text="Tipo Proyecto" />
+    <Label id="proyecto" layoutX="405.0" layoutY="236.0" text="Tipo Proyecto" />
+    <Label id="proyecto" layoutX="417.0" layoutY="178.0" text="Semestre" />
+    <Label id="proyecto" layoutX="266.0" layoutY="178.0" text="Matricula" />
+    <Label id="proyecto" fx:id="matricula" layoutX="266.0" layoutY="207.0" text="Matricula" />
+    <Label id="proyecto" fx:id="semestre" layoutX="417.0" layoutY="204.0" text="Semestre" />
   </children>
 </AnchorPane>
