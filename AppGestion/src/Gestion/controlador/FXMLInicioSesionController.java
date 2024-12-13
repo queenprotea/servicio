@@ -60,6 +60,8 @@ public class FXMLInicioSesionController implements Initializable {
                         try {
                             Stage stage = (Stage) TFUsuario.getScene().getWindow();
                             FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLMenuPrincipalEstudiante.fxml"));
+                            FXMLMenuPrincipalEstudianteController controller = loader.load();
+                            controller.inicializarValores(EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(TFUsuario.getText())));
                             Parent vista = loader.load();
                             Scene scene = new Scene(vista);
                             stage.setScene(scene);
