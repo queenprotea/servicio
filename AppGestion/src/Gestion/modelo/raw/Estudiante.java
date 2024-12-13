@@ -9,7 +9,7 @@ public class Estudiante {
     private String semestre;
     private String telefono;
     private String correo;
-    private String password;
+    private String contrasena;
     private String estado;
     private String matricula;
     private String promedio;
@@ -28,7 +28,7 @@ public class Estudiante {
         this.semestre = semestre;
         this.telefono = telefono;
         this.correo = correo;
-        this.password = password;
+        this.contrasena = password;
         this.estado = estado;
         this.matricula = matricula;
         this.promedio = promedio;
@@ -65,8 +65,8 @@ public class Estudiante {
         return matricula;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
     public String getPromedio() {
@@ -109,8 +109,8 @@ public class Estudiante {
         this.matricula = matricula;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public void setPromedio(String promedio) {
@@ -164,4 +164,5 @@ public class Estudiante {
     public boolean getEstadoProyecto() {
         return estadoProyecto;
     }
+
 }

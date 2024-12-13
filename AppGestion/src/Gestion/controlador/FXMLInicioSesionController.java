@@ -100,7 +100,7 @@ public class FXMLInicioSesionController implements Initializable {
             }
         }
         if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)) != null){
-            if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)).getPassword() == contrasena){
+            if (EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(idUsuario)).getContrasena() == contrasena){
                 tipoUsuario = 2;
             }
         }

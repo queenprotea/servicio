@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -89,6 +90,8 @@ public class FXMLAsignarProyectoPPController implements Initializable {
     @FXML
     private void cancelar(ActionEvent event) {
         // Implementar la lógica para cancelar la asignación
+        Stage stage = (Stage) nombreEstudainte.getScene().getWindow();
+        stage.close();
     }
 
     // Método para inicializar los valores del estudiante (llamado desde otro controlador)
