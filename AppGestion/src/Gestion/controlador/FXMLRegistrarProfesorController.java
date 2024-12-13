@@ -109,4 +109,5 @@ public class FXMLRegistrarProfesorController implements Initializable {
             stage.close();
 
         }
+
 }

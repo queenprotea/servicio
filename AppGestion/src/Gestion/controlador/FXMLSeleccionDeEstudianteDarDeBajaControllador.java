@@ -2,6 +2,8 @@ package Gestion.controlador;
 
 import Gestion.modelo.dao.EstudianteDAO;
 import Gestion.modelo.raw.Estudiante;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class FXMLSeleccionDeEstudianteDarDeBajaControllador {
 
@@ -101,7 +104,14 @@ public class FXMLSeleccionDeEstudianteDarDeBajaControllador {
     }
     private void llenarTabla(){
         try{
+            ObservableList<Estudiante> estudiantes = FXCollections.observableArrayList();
+            for(Estudiante estudiante : EstudianteDAO.obtenerEstudiantes()){
+                if (Objects.equals(estudiante.getEstado(), "Activo")){
+                    estudiantes.add(estudiante);
+                }
+            }
             tablaEstudiantes.setItems(EstudianteDAO.obtenerEstudiantes());
+
         }catch (SQLException e){
             e.printStackTrace();
         }

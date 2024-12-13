@@ -77,6 +77,19 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickModificarOrganizacion(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLModificarOrganizacion.fxml"));
+            Parent vista = loader.load();
+            FXMLModificarOrganizacionController controller = loader.getController();
+            controller.inicializarValores();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -97,18 +110,65 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickRegistrarModificarEstudiante(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMModificarEstudiante.fxml"));
+            Parent vista = loader.load();
+            FXMLModificarEstudianteController controller = loader.getController();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void clickRegistrarProfesor(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistrarProfesor.fxml"));
+            Parent vista = loader.load();
+            FXMLRegistrarProfesorController controller = loader.getController();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void clickAsignarProyectoPP(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLSeleccionDeAlumnoParaProyectoPP.fxml"));
+            Parent vista = loader.load();
+            FXMLSeleccionDeAlumnoParaProyectoPPController controller = loader.getController();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void clickAsignarProyectoSS(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLSeleccionProyectoParaAlumnoSS.fxml"));
+            Parent vista = loader.load();
+            FXMLSeleccionProyectoParaAlumnoSSController controller = loader.getController();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -117,6 +177,18 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
 
     @FXML
     private void clickDarDeBajaEstudiante(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLSeleccionDeEstudainteDarDeBaja.fxml"));
+            Parent vista = loader.load();
+            FXMLSeleccionDeEstudianteDarDeBajaControllador controller = loader.getController();
+            controller.inicializarValores();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
