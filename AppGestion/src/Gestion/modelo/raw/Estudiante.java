@@ -1,5 +1,7 @@
 package Gestion.modelo.raw;
 
+import java.util.List;
+
 public class Estudiante {
 
     private int idEstudiante;
@@ -15,6 +17,7 @@ public class Estudiante {
     private String promedio;
     private int creditos;
     private Proyecto proyecto;
+    private List<String> seleccionProyecto;
 
     public Estudiante(int idEstudiante, String nombre, String apellidoPaterno, String apellidoMaterno, String semestre, String telefono, String correo, String password, String estado, String matricula, String promedio, int creditos) {
         this.idEstudiante = idEstudiante;
@@ -121,6 +124,7 @@ public class Estudiante {
         this.telefono = telefono;
     }
 
+
     public void setCreditos(int creditos) {
         this.creditos = creditos;
     }
@@ -136,4 +140,13 @@ public class Estudiante {
     public Proyecto getProyecto() {
         return proyecto;
     }
+
+    public void setSeleccionProyecto(List<String> seleccionProyecto) {
+        this.seleccionProyecto = seleccionProyecto;
+    }
+
+    public List<String> getSeleccionProyecto() {
+        return seleccionProyecto;
+    }
+
 }

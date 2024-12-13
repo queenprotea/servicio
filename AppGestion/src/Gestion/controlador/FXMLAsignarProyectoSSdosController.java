@@ -67,6 +67,7 @@ public class FXMLAsignarProyectoSSdosController implements Initializable {
         if (! tablaAlumnosSinAsignar.getSelectionModel().isEmpty()){
             estudiantes.add(tablaAlumnosSinAsignar.getSelectionModel().getSelectedItem());
             actualizarTablaEstudiante();
+
         }
     }
 

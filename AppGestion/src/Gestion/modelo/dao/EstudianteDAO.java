@@ -128,6 +128,7 @@ public class EstudianteDAO {
             try {
                 String sqlsentencia = "UPDATE estudiante SET nombre = ?, apellidopaterno = ?, apellidomaterno = ?," +
                         " matricula = ?, telefono = ?, semestre = ?, correo = ?, estado  = ?, creditos = ?, idProyecto = ? " +
+                        "proyectosseleccionados = ?"+
                         "WHERE idEstudiante = ?";
                 PreparedStatement statement = connection.prepareStatement(sqlsentencia);
                 statement.setString(1, estudiante.getNombre());
@@ -140,7 +141,14 @@ public class EstudianteDAO {
                 statement.setString(8, estudiante.getEstado());
                 statement.setInt(9, estudiante.getCreditos());
                 statement.setString(10, String.valueOf(estudiante.getProyecto().getIdProyecto()));
-                statement.setInt(11, estudiante.getIdEstudiante());
+
+                String proyectosConcantenados = (estudiante.getSeleccionProyecto() != null && !estudiante.getSeleccionProyecto().isEmpty())
+                                                ? String.join(", ", estudiante.getSeleccionProyecto()) : "";
+
+                statement.setString(11, proyectosConcantenados);
+                statement.setInt(12, estudiante.getIdEstudiante());
+
+
 
                 statement.executeUpdate();
             }catch (SQLException e){
