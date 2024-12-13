@@ -3,6 +3,7 @@ package Gestion.modelo.dao;
 import Gestion.conexionbd.ConexionBD;
 import Gestion.modelo.raw.Encargado;
 import Gestion.modelo.raw.Organizacion;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
@@ -61,7 +62,7 @@ public class OrganizacionDAO {
 
     public static ObservableList<Organizacion> obtenerOrganizaciones() throws SQLException {
 
-        List<Organizacion> organizaciones = null;
+        ObservableList<Organizacion> organizaciones = FXCollections.observableArrayList();
 
         Connection connection = ConexionBD.abrirConexion();
 
@@ -71,7 +72,6 @@ public class OrganizacionDAO {
                 String sqlSentencia = "SELECT * FROM organizacion";
                 PreparedStatement statement = connection.prepareStatement(sqlSentencia);
                 ResultSet resultSet = statement.executeQuery();
-                organizaciones = new ArrayList<>();
                 while (resultSet.next()) {
                     organizaciones.add(serializarOrganizacion(resultSet));
                 }
@@ -89,7 +89,7 @@ public class OrganizacionDAO {
         Organizacion organizacion = new Organizacion();
 
         organizacion.setIdOrganizacion(resultSet.getInt("idOrganizacion"));
-        organizacion.setActiva(String.valueOf(resultSet.getBoolean("activa")));
+        organizacion.setActiva(resultSet.getString("activa"));
         organizacion.setCalle(resultSet.getString("calle"));
         organizacion.setCiudad(resultSet.getString("ciudad"));
         organizacion.setCodigoPostal(resultSet.getString("codigoPostal"));

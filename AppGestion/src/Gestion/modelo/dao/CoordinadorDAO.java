@@ -66,15 +66,16 @@ public class CoordinadorDAO {
 
     }
 
-    public static Coordinador obtenerCoordinadorPorId(int idCoordinador) throws SQLException {
+    public static Coordinador obtenerCoordinadorPorId(int idCoordinador) {
         Coordinador coordinador = new Coordinador();
         try {
             String sqlSentencia = "SELECT * FROM coordinador WHERE idUsuario = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
             statement.setInt(1, idCoordinador);
             ResultSet resultSet = statement.executeQuery();
-            coordinador = serializarCoordinador(resultSet);
-
+            if (resultSet.next()) {
+                coordinador = serializarCoordinador(resultSet);
+            }
 
         }catch (SQLException e){
             e.printStackTrace();
