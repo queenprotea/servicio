@@ -14,7 +14,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.vista.RegistrarSeleccion">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.RegistrarSeleccion">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c0099" height="68.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
     <TableView fx:id="tablaProyectos" layoutX="36.0" layoutY="80.0" prefHeight="200.0" prefWidth="537.0">

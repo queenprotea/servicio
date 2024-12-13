@@ -83,22 +83,24 @@ public class EstudianteDAO {
     }
 
     public static Estudiante obtenerEstudiantePorId(int idEstudiante) throws SQLException {
-
+        Estudiante estudiante = new Estudiante();
         try {
 
-            Estudiante estudiante = new Estudiante();
 
-            String sqlSentencia = "SELECT * FROM estudiante WHERE idOrganizacion = ?";
+
+            String sqlSentencia = "SELECT * FROM estudiante WHERE idEstudiante = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
             statement.setInt(1, idEstudiante);
             ResultSet resultSet = statement.executeQuery();
-            estudiante = serializarEstudiante(resultSet);
+            if (resultSet.next()) {
+                estudiante = serializarEstudiante(resultSet);
+            }
 
-            return estudiante;
 
         }catch (SQLException e){
-            return null;
+            e.printStackTrace();
         }
+        return estudiante;
     }
 
     public static ObservableList<Estudiante> obtenerEstudiantes() throws SQLException {

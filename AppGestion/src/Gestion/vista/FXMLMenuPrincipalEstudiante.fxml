@@ -31,7 +31,7 @@
       </image>
     </ImageView>
     <Label layoutX="332.0" layoutY="113.0" text=" Nombre" />
-    <Label fx:id="nombre" layoutX="243.0" layoutY="144.0" text=" Nombre" />
+    <Label fx:id="nommbre" layoutX="243.0" layoutY="144.0" text=" Nombre" />
     <Label fx:id="apellidoPaterno" layoutX="310.0" layoutY="144.0" text="Apellido Paterno" />
     <Label fx:id="apellidoMaterno" layoutX="409.0" layoutY="144.0" text="Apellido Materno" />
     <Label fx:id="proyecto" layoutX="269.0" layoutY="260.0" text="Proyecto" />

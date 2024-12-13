@@ -86,6 +86,7 @@ public class FXMLMenuPrincipalEstudianteController implements Initializable {
     }
     public void inicializarValores (Estudiante estudiante) {
         this.estudiante = estudiante;
+        System.out.println(estudiante.getNombre());
         cargarDatosEstudiante();
     }
 }
