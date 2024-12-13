@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLSeleccionDeEstudianteDarDeBajaControllador">
-    <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#394ba1" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-        <Label layoutX="167.0" layoutY="15.0" text="Seleccionar Estudiante" textFill="WHITE">
-            <font>
-                <Font size="30.0" />
-            </font>
-        </Label>
-        <ImageView fitHeight="94.0" fitWidth="56.0" layoutX="535.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
-            </image>
-        </ImageView>
-        <TextField fx:id="tfBuscador" layoutX="93.0" layoutY="88.0" prefHeight="25.0" prefWidth="372.0" promptText="Buscar Matricula" />
-        <Button layoutX="465.0" layoutY="88.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" />
-        <TableView fx:id="tablaEstudiantes" layoutX="39.0" layoutY="139.0" prefHeight="200.0" prefWidth="538.0">
-            <columns>
-                <TableColumn fx:id="columnaNombreEstudiante" prefWidth="130.0" text="Nombre estudiante" />
-                <TableColumn fx:id="columnaMatriculaEstudiante" prefWidth="130.0" text="Matricula" />
-            <TableColumn fx:id="columnaNombreProyecto" prefWidth="131.0" text="proyecto" />
-            <TableColumn fx:id="columnaTipoProyecto" prefWidth="146.0" text="Tipo Proyecto" />
-            </columns>
-        </TableView>
-        <Label layoutX="270.0" layoutY="122.0" text="Estudiantes" />
-        <Button layoutX="344.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickVer" text="Ver" />
-        <Button layoutX="212.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
-    </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLSeleccionDeEstudianteDarDeBajaControllador">
+  <children>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c0099" height="74.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+    <Label layoutX="154.0" layoutY="15.0" text="Seleccionar Estudiante" textFill="WHITE">
+      <font>
+        <Font name="Arial Rounded MT Bold" size="30.0" />
+      </font>
+    </Label>
+    <ImageView fitHeight="59.0" fitWidth="45.69216030359737" layoutX="540.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
+      </image>
+    </ImageView>
+    <TextField fx:id="tfBuscador" layoutX="93.0" layoutY="88.0" prefHeight="25.0" prefWidth="372.0" promptText="Buscar Matricula" />
+    <Button layoutX="465.0" layoutY="88.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" />
+    <TableView fx:id="tablaEstudiantes" layoutX="39.0" layoutY="139.0" prefHeight="200.0" prefWidth="538.0">
+      <columns>
+        <TableColumn prefWidth="130.0" text="Nombre estudiante" fx:id="columnaNombreEstudiante" />
+        <TableColumn prefWidth="130.0" text="Matricula" fx:id="columnaMatriculaEstudiante" />
+        <TableColumn prefWidth="131.0" text="proyecto" fx:id="columnaNombreProyecto" />
+        <TableColumn prefWidth="146.0" text="Tipo Proyecto" fx:id="columnaTipoProyecto" />
+      </columns>
+    </TableView>
+    <Label layoutX="270.0" layoutY="122.0" text="Estudiantes" />
+    <Button layoutX="344.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickVer" text="Ver" />
+    <Button layoutX="212.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+  </children>
 </AnchorPane>
