@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ConexionBD {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String NOMBRE_BD = "gestionservicio";
+    private static final String NOMBRE_BD = "gestionproyecto";
     private static final String IP = "localhost";
     private static final String PUERTO = "3306";
 
@@ -18,7 +18,7 @@ public class ConexionBD {
         try {
             Class.forName(DRIVER);
             conexionBD = DriverManager.getConnection(urlConexion,
-                    "root", "30dtv0105k");
+                    "root", "Krystel2003!");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {

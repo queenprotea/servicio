@@ -21,26 +21,28 @@
         <Image url="@../recursos/800px-Logo_de_la_Universidad_Veracruzana.png" />
       </image>
     </ImageView>
-    <Button layoutX="112.0" layoutY="321.0" mnemonicParsing="false" onAction="#cliclRegistrarSeleccion" prefWidth="131.0" text="Registrar Seleccion" />
+    <Button layoutX="113.0" layoutY="309.0" mnemonicParsing="false" onAction="#cliclRegistrarSeleccion" prefWidth="131.0" text="Registrar Seleccion" />
     <Button layoutX="112.0" layoutY="354.0" mnemonicParsing="false" onAction="#clicSubirReporte" prefWidth="132.0" text="Subir Reporte" />
     <Button layoutX="356.0" layoutY="354.0" mnemonicParsing="false" onAction="#cliclConsultarExpediente" text="Consultar Expediente" />
-    <Button layoutX="356.0" layoutY="321.0" mnemonicParsing="false" onAction="#cliclSubirDocumentos" prefWidth="132.0" text="Subir Documentos" />
+    <Button layoutX="354.0" layoutY="309.0" mnemonicParsing="false" onAction="#cliclSubirDocumentos" prefWidth="132.0" text="Subir Documentos" />
     <ImageView fitHeight="107.0" fitWidth="107.0" layoutX="55.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../recursos/img.png" />
       </image>
     </ImageView>
-    <Label layoutX="332.0" layoutY="113.0" text=" Nombre" />
-    <Label fx:id="nommbre" layoutX="243.0" layoutY="144.0" text=" Nombre" />
-    <Label fx:id="apellidoPaterno" layoutX="310.0" layoutY="144.0" text="Apellido Paterno" />
-    <Label fx:id="apellidoMaterno" layoutX="409.0" layoutY="144.0" text="Apellido Materno" />
-    <Label fx:id="proyecto" layoutX="269.0" layoutY="260.0" text="Proyecto" />
-    <Label id="proyecto" layoutX="269.0" layoutY="231.0" text="Proyecto" />
-    <Label id="proyecto" fx:id="tipoProyecto" layoutX="405.0" layoutY="260.0" text="Tipo Proyecto" />
-    <Label id="proyecto" layoutX="405.0" layoutY="236.0" text="Tipo Proyecto" />
-    <Label id="proyecto" layoutX="417.0" layoutY="178.0" text="Semestre" />
-    <Label id="proyecto" layoutX="266.0" layoutY="178.0" text="Matricula" />
-    <Label id="proyecto" fx:id="matricula" layoutX="266.0" layoutY="207.0" text="Matricula" />
-    <Label id="proyecto" fx:id="semestre" layoutX="417.0" layoutY="204.0" text="Semestre" />
+    <Label layoutX="245.0" layoutY="88.0" text=" Nombre" />
+    <Label fx:id="nommbre" layoutX="245.0" layoutY="112.0" text=" Nombre" />
+    <Label fx:id="apellidoPaterno" layoutX="340.0" layoutY="112.0" text="Apellido Paterno" />
+    <Label fx:id="apellidoMaterno" layoutX="466.0" layoutY="112.0" text="Apellido Materno" />
+    <Label fx:id="proyecto" layoutX="246.0" layoutY="251.0" text="Proyecto" />
+    <Label id="proyecto" layoutX="246.0" layoutY="222.0" text="Proyecto" />
+    <Label id="proyecto" fx:id="tipoProyecto" layoutX="476.0" layoutY="252.0" text="Tipo Proyecto" />
+    <Label id="proyecto" layoutX="476.0" layoutY="225.0" text="Tipo Proyecto" />
+    <Label id="proyecto" layoutX="488.0" layoutY="154.0" text="Semestre" />
+    <Label id="proyecto" layoutX="244.0" layoutY="148.0" text="Matricula" />
+    <Label id="proyecto" fx:id="matricula" layoutX="244.0" layoutY="177.0" text="Matricula" />
+    <Label id="proyecto" fx:id="semestre" layoutX="488.0" layoutY="183.0" text="Semestre" />
+      <Label layoutX="340.0" layoutY="88.0" text="Apellido Paterno" />
+      <Label layoutX="466.0" layoutY="88.0" text="Apellido Materno" />
   </children>
 </AnchorPane>
