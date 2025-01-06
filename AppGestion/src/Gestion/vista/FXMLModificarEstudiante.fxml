@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Gestion.controlador.FXMLModificarEstudianteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestion.controlador.FXMLModificarEstudianteController">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#310099" height="70.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
     <Label layoutX="163.0" layoutY="18.0" text="Modificar Estudiante" textAlignment="CENTER" textFill="WHITE">
@@ -49,14 +44,15 @@
     <Label layoutX="497.0" layoutY="151.0" text="Telefono" />
     <TextField fx:id="tfTelefono" layoutX="453.0" layoutY="173.0" prefHeight="25.0" prefWidth="135.0" />
     <Button fx:id="botonCambios" layoutX="509.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickRegistrar" text="Registrar" />
-    <Button layoutX="399.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
+    <Button layoutX="422.0" layoutY="353.0" mnemonicParsing="false" onAction="#clickCancelar" text="Cancelar" />
     <TableView fx:id="tablaEstudiantes" layoutX="14.0" layoutY="90.0" prefHeight="265.0" prefWidth="135.0">
       <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="71.2000732421875" text="nombre" fx:id="columnaNombreEstudiantes" />
-        <TableColumn prefWidth="63.199951171875" text="matricula" fx:id="columnaMatriculaEstudiantes" />
+        <TableColumn fx:id="columnaNombreEstudiantes" maxWidth="5000.0" minWidth="10.0" prefWidth="71.2000732421875" text="nombre" />
+        <TableColumn fx:id="columnaMatriculaEstudiantes" prefWidth="63.199951171875" text="matricula" />
       </columns>
     </TableView>
     <Label layoutX="505.0" layoutY="200.0" text="Estado" />
-    <Button fx:id="botonEstado" layoutX="464.0" layoutY="220.0" mnemonicParsing="false" onAction="#clickEstado" prefWidth="117.0" text="" />
+      <CheckBox fx:id="cbActivo" layoutX="484.0" layoutY="221.0" mnemonicParsing="false" text="Activo" />
+      <CheckBox fx:id="cbInactivo" layoutX="484.0" layoutY="245.0" mnemonicParsing="false" text="Inactivo" />
   </children>
 </AnchorPane>

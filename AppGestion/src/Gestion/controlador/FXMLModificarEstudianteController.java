@@ -10,15 +10,13 @@ import java.util.ResourceBundle;
 
 import Gestion.modelo.dao.EstudianteDAO;
 import Gestion.modelo.raw.Estudiante;
+import Gestion.utilidades.Mensajes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -50,7 +48,9 @@ public class FXMLModificarEstudianteController implements Initializable {
     @FXML
     private Button botonCambios;
     @FXML
-    private Button botonEstado;
+    private CheckBox cbActivo;
+    @FXML
+    private CheckBox cbInactivo;
     @FXML
     private TableView<Estudiante> tablaEstudiantes;
     @FXML
@@ -86,11 +86,17 @@ public class FXMLModificarEstudianteController implements Initializable {
                 estudiante.setTelefono(tfTelefono.getText());
                 estudiante.setApellidoMaterno(txApellidoMaterno.getText());
                 estudiante.setProyecto(tablaEstudiantes.getSelectionModel().getSelectedItem().getProyecto());
+                if (cbActivo.isSelected()) {
+                    estudiante.setEstado("Activo");
+                } else if (cbInactivo.isSelected()) {
+                    estudiante.setEstado("Inactivo");
+                }
 
                 EstudianteDAO.modificarEstudiante(estudiante);
             }catch (SQLException e){
                 e.printStackTrace();
             }
+            Mensajes.mostrarAlertaConfirmacion("Confirmacion","Cambios guardados exitosamente");
             modificarEdicion();
             botonCambios.setText("Modificar");
         }
@@ -102,17 +108,6 @@ public class FXMLModificarEstudianteController implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void clickEstado(ActionEvent event) {
-        if (tablaEstudiantes.getSelectionModel().getSelectedItem().getEstado() == "Activo") {
-            estudiante.setEstado("Inactivo");
-            botonEstado.setText("Inactivo");
-        }else{
-            estudiante.setEstado("Activo");
-            botonEstado.setText("Activo");
-        }
-
-    }
 
     private void llenarTablaEstudiantes(){
         try{
@@ -125,6 +120,17 @@ public class FXMLModificarEstudianteController implements Initializable {
         modificarEdicion();
         llenarTablaEstudiantes();
         configurarTabla();
+
+        cbInactivo.setOnAction(event -> {
+            if (cbInactivo.isSelected()) {
+                cbActivo.setSelected(false);
+            }
+        });
+        cbActivo.setOnAction(event -> {
+            if (cbActivo.isSelected()) {
+                cbInactivo.setSelected(false);
+            }
+        });
 
         tablaEstudiantes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Estudiante>() {
             @Override
@@ -147,6 +153,11 @@ public class FXMLModificarEstudianteController implements Initializable {
         tfSemestre.setText(String.valueOf(estudiante.getSemestre()));
         tfCreditos.setText(String.valueOf(estudiante.getCreditos()));
         tfPromedio.setText(String.valueOf(estudiante.getPromedio()));
+        if (estudiante.getEstado() == "Activo"){
+            cbActivo.setSelected(true);
+        }else {
+            cbInactivo.setSelected(true);
+        }
     }
     private void modificarEdicion(){
         if (modoEddicion) {
@@ -159,7 +170,7 @@ public class FXMLModificarEstudianteController implements Initializable {
             tfTelefono.setEditable(false);
             tfSemestre.setEditable(false);
             tfPromedio.setEditable(false);
-            botonEstado.setDisable(true);
+
             modoEddicion = false;
 
         }else {
@@ -172,7 +183,7 @@ public class FXMLModificarEstudianteController implements Initializable {
             tfTelefono.setEditable(true);
             tfSemestre.setEditable(true);
             tfPromedio.setEditable(true);
-            botonEstado.setDisable(false);
+
             modoEddicion = true;
 
         }
