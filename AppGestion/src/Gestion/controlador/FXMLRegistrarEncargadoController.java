@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -73,6 +74,8 @@ public class FXMLRegistrarEncargadoController implements Initializable {
                 encargado.setOrganizacion(CBOrganizaciones.getValue());
 
                 EncargadoDAO.registrarEncargado(encargado);
+                limpiarCampos();
+                Mensajes.mostrarAlertaConfirmacion("Confirmacion","Encargado guardado con exito");
             }catch (SQLException e){
                 e.printStackTrace();
                 Mensajes.mostrarAlertaConfirmacion("Error", "Error al conectar con la base de datos");
@@ -83,6 +86,7 @@ public class FXMLRegistrarEncargadoController implements Initializable {
 
     public void inicializarValores() throws SQLException {
         cargarOrganizacion();
+        configurarTextFieldNumerico(TFTelefono);
     }
 
     public void cargarOrganizacion() {
@@ -123,6 +127,28 @@ public class FXMLRegistrarEncargadoController implements Initializable {
 
         return true;
     }
+
+    private void limpiarCampos() {
+        TfNombre.setText("");
+        TFApellidoPaterno.setText("");
+        TFApellidoMaterno.setText("");
+        TFPuesto.setText("");
+        TFTelefono.setText("");
+        TFCorreo.setText("");
+        CBOrganizaciones.setValue(null);
+
+    }
+    private void configurarTextFieldNumerico(TextField textField) {
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Solo números
+                return change;
+            }
+            return null; // Rechazar cambios no numéricos
+        });
+        textField.setTextFormatter(textFormatter);
+    }
+
     private void cerrarVentana(){
         Stage stage =(Stage) TFApellidoMaterno.getScene().getWindow();
         stage.close();

@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 /**
@@ -133,9 +134,26 @@ public class FXMLRegistrarEstudianteController implements Initializable {
         Stage stage = (Stage) tfNombres.getScene().getWindow();
         stage.close();
     }
+    private void configurarTextFieldNumerico(TextField textField) {
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Solo números
+                return change;
+            }
+            return null; // Rechazar cambios no numéricos
+        });
+
+        textField.setTextFormatter(textFormatter);
+    }
+
 
     public void inicializarValores(){
         llenarComboBox();
+        configurarTextFieldNumerico(tfCreditos);
+        configurarTextFieldNumerico(tfTelefono);
+        configurarTextFieldNumerico(tfSemestre);
+        configurarTextFieldNumerico(tfPromedio);
+
     }
     
 }

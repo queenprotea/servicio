@@ -109,6 +109,7 @@ public class FXLMCrearProyectoController implements Initializable {
                 chbPracticasProfesionales.setSelected(false);
             }
         });
+        configurarTextFieldNumerico(tfCupos);
     }
     public void cargarOrganizacion() {
         // Recuperar la lista de organizaciones desde el DAO
@@ -183,14 +184,25 @@ public class FXLMCrearProyectoController implements Initializable {
         return true;
     }
 
-    private void cerrarVentana(){
-        Stage stage = (Stage) taDescripcion.getScene().getWindow();
-        stage.close();
-    }
+
     private void limpiarCampos(){
         tfNombreProyecto.setText("");
         taDescripcion.setText("");
         tfCupos.setText("");
     }
-    
+    private void configurarTextFieldNumerico(TextField textField) {
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Solo números
+                return change;
+            }
+            return null; // Rechazar cambios no numéricos
+        });
+        textField.setTextFormatter(textFormatter);
+    }
+
+    private void cerrarVentana(){
+        Stage stage = (Stage) taDescripcion.getScene().getWindow();
+        stage.close();
+    }
 }

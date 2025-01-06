@@ -67,6 +67,8 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLRegistrarOrganizacion.fxml"));
             Parent vista = loader.load();
+            FXMLRegistrarOrganizacionController controller = loader.getController();
+            controller.inicializarValores();
             Scene scene = new Scene(vista);
             stage.setScene(scene);
             stage.show();
@@ -82,7 +84,6 @@ public class FXMLMenuPrincipalCoordinadorController implements Initializable {
             FXMLLoader loader = new FXMLLoader(Gestion.Main.class.getResource("vista/FXMLModificarOrganizacion.fxml"));
             Parent vista = loader.load();
             FXMLModificarOrganizacionController controller = loader.getController();
-            controller.inicializarValores();
             controller.inicializarValores();
             Scene scene = new Scene(vista);
             stage.setScene(scene);

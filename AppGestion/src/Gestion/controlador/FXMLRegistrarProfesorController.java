@@ -41,6 +41,7 @@ public class FXMLRegistrarProfesorController implements Initializable {
     @FXML
     private TextField tfContrasena;
 
+
     /**
      * Initializes the controller class.
      */
@@ -88,6 +89,7 @@ public class FXMLRegistrarProfesorController implements Initializable {
         txApellidoMaterno.setText("");
         tfEspecialidad.setText("");
         tfCorreo.setText("");
+        tfContrasena.setText("");
     }
 
     private boolean validarCampos(){
@@ -97,7 +99,8 @@ public class FXMLRegistrarProfesorController implements Initializable {
                 tfTelefono.getText().isEmpty() ||
                 txApellidoMaterno.getText().isEmpty() ||
                 tfEspecialidad.getText().isEmpty() ||
-                tfCorreo.getText().isEmpty())
+                tfCorreo.getText().isEmpty() ||
+                tfContrasena.getText().isEmpty())
             return false;
         return true;
 

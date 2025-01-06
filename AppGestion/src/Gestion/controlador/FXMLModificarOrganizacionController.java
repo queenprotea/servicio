@@ -50,10 +50,14 @@ public class FXMLModificarOrganizacionController implements Initializable {
     private TableView<Organizacion> tablaOrganizaciones;
     @FXML
     private TableColumn<?, ?> nombreOrganizacion;
-    @FXML
-    private Button estado;
+
     @FXML
     private Button botonCambios;
+    @FXML
+    private CheckBox cbActivo;
+    @FXML
+    private CheckBox cbInactivo;
+
 
     private boolean modoEddicion = false;
     Organizacion organizacion = new Organizacion();
@@ -68,7 +72,7 @@ public class FXMLModificarOrganizacionController implements Initializable {
 
     @FXML
     private void clickCancelar(ActionEvent event) {
-        Stage stage = (Stage) estado.getScene().getWindow();
+        Stage stage = (Stage) tfCalle.getScene().getWindow();
         stage.close();
     }
 
@@ -90,6 +94,11 @@ public class FXMLModificarOrganizacionController implements Initializable {
                 organizacion.setCiudad(tfCiudad.getText());
                 organizacion.setEstado(tfEstado.getText());
                 organizacion.setCiudad(tfCiudad.getText());
+                if (cbActivo.isSelected()) {
+                    organizacion.setActiva("Activo");
+                } else if (cbInactivo.isSelected()) {
+                    organizacion.setActiva("Inactivo");
+                }
 
                 OrganizacionDAO.modificarOrganizacion(organizacion);
                 System.out.println(organizacion.getRazonSocial());
@@ -102,16 +111,6 @@ public class FXMLModificarOrganizacionController implements Initializable {
         }
     }
 
-    @FXML
-    private void cliclestado(ActionEvent event) {
-        if(tablaOrganizaciones.getSelectionModel().getSelectedItem().getActiva() == "Activo") {
-            organizacion.setActiva("Inactivo");
-            estado.setText("Inactivo");
-        }else {
-            organizacion.setActiva("Activo");
-            estado.setText("Activo");
-        }
-    }
 
     public void inicializarValores(){
         nombreOrganizacion.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
@@ -119,6 +118,18 @@ public class FXMLModificarOrganizacionController implements Initializable {
         modoEddicion = true;
         modificarEdicion();
         modoEddicion = false;
+
+        cbInactivo.setOnAction(event -> {
+            if (cbInactivo.isSelected()) {
+                cbActivo.setSelected(false);
+            }
+        });
+        cbActivo.setOnAction(event -> {
+            if (cbActivo.isSelected()) {
+                cbInactivo.setSelected(false);
+            }
+        });
+
         tablaOrganizaciones.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Organizacion>() {
             @Override
             public void changed(ObservableValue<? extends Organizacion> observable, Organizacion oldValue, Organizacion newValue) {
@@ -158,7 +169,6 @@ public class FXMLModificarOrganizacionController implements Initializable {
             tfCalle.setEditable(false);
             tfCiudad.setEditable(false);
             tfEstado.setEditable(false);
-            estado.setDisable(true);
 
 
         }else{
@@ -170,7 +180,6 @@ public class FXMLModificarOrganizacionController implements Initializable {
             tfCalle.setEditable(true);
             tfCiudad.setEditable(true);
             tfEstado.setEditable(true);
-            estado.setDisable(false);
 
 
         }

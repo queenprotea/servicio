@@ -7,7 +7,6 @@ package Gestion.controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import Gestion.modelo.dao.CoordinadorDAO;
@@ -17,13 +16,13 @@ import Gestion.modelo.raw.Coordinador;
 import Gestion.modelo.raw.Estudiante;
 import Gestion.modelo.raw.Profesor;
 import Gestion.utilidades.Mensajes;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -36,7 +35,8 @@ public class FXMLInicioSesionController implements Initializable {
     @FXML
     private TextField TFUsuario;
     @FXML
-    private TextField TFContrasena;
+    private PasswordField TFContrasena;
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,7 +67,7 @@ public class FXMLInicioSesionController implements Initializable {
                             Parent vista = loader.load();
                             FXMLMenuPrincipalEstudianteController controller = loader.getController();
 
-                            controller.inicializarValores(EstudianteDAO.obtenerEstudiantePorId(Integer.parseInt(TFUsuario.getText())));
+                            controller.inicializarValores(EstudianteDAO.obtenerEstudiantePorMatricula(TFUsuario.getText()));
 
                             Scene scene = new Scene(vista);
                             stage.setScene(scene);
@@ -104,24 +104,24 @@ public class FXMLInicioSesionController implements Initializable {
         int tipoUsuario = 0;
 
         try {
-            int id = Integer.parseInt(idUsuario);
+
 
             // Verificar si es Coordinador
-            Coordinador coordinador = CoordinadorDAO.obtenerCoordinadorPorId(id);
+            Coordinador coordinador = CoordinadorDAO.obtenerCoordinadorPorMatricula(idUsuario);
             if (coordinador != null && contrasena.equals(coordinador.getContrasena())) {
                 tipoUsuario = 1;
                 return tipoUsuario;
             }
 
             // Verificar si es Estudiante
-            Estudiante estudiante = EstudianteDAO.obtenerEstudiantePorId(id);
+            Estudiante estudiante = EstudianteDAO.obtenerEstudiantePorMatricula(idUsuario);
             if (estudiante != null && contrasena.equals(estudiante.getContrasena())) {
                 tipoUsuario = 2;
                 return tipoUsuario;
             }
 
             // Verificar si es Profesor
-            Profesor profesor = ProfesorDAO.obtenerProfesorPorId(id);
+            Profesor profesor = ProfesorDAO.obtenerProfesorPorMatricula(idUsuario);
             if (profesor != null && contrasena.equals(profesor.getContrasena())) {
                 tipoUsuario = 3;
                 return tipoUsuario;

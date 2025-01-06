@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
 
 public class ProyectoDAO {
     public static HashMap<String, Object> registarProyecto(Proyecto proyecto) throws SQLException {

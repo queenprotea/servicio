@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 /**
@@ -51,8 +52,10 @@ public class FXMLRegistrarOrganizacionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }
+    public void inicializarValores() {
+        configurarTextFieldNumerico(tfCP);
+    }
     @FXML
     private void clickCancelar(ActionEvent event) {
         cerrarVentana();
@@ -117,9 +120,22 @@ public class FXMLRegistrarOrganizacionController implements Initializable {
         tfEstado.setText("");
         tfCiudad.setText("");
     }
+
+    private void configurarTextFieldNumerico(TextField textField) {
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Solo números
+                return change;
+            }
+            return null; // Rechazar cambios no numéricos
+        });
+        textField.setTextFormatter(textFormatter);
+    }
+
     private void cerrarVentana(){
         Stage stage = (Stage) taDescripcion.getScene().getWindow();
         stage.close();
     }
-    
+
+
 }

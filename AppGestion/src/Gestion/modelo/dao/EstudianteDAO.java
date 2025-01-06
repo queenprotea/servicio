@@ -5,7 +5,6 @@ import Gestion.conexionbd.ConexionBD;
 import Gestion.modelo.raw.Estudiante;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
 
 public class EstudianteDAO {
 
@@ -82,15 +80,15 @@ public class EstudianteDAO {
 
     }
 
-    public static Estudiante obtenerEstudiantePorId(int idEstudiante) throws SQLException {
+    public static Estudiante obtenerEstudiantePorMatricula(String idEstudiante) throws SQLException {
         Estudiante estudiante = new Estudiante();
         try {
 
 
 
-            String sqlSentencia = "SELECT * FROM estudiante WHERE idEstudiante = ?";
+            String sqlSentencia = "SELECT * FROM estudiante WHERE matricula = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
-            statement.setInt(1, idEstudiante);
+            statement.setString(1, idEstudiante);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 estudiante = serializarEstudiante(resultSet);

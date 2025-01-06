@@ -2,7 +2,6 @@ package Gestion.modelo.dao;
 
 import Gestion.modelo.raw.Coordinador;
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Organizacion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,6 +64,24 @@ public class CoordinadorDAO {
         return coordinador;
 
     }
+
+    public static Coordinador obtenerCoordinadorPorMatricula(String idCoordinador) {
+        Coordinador coordinador = new Coordinador();
+        try {
+            String sqlSentencia = "SELECT * FROM coordinador WHERE matricula = ?";
+            PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
+            statement.setString(1, idCoordinador);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                coordinador = serializarCoordinador(resultSet);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return coordinador;
+    }
+
 
     public static Coordinador obtenerCoordinadorPorId(int idCoordinador) {
         Coordinador coordinador = new Coordinador();

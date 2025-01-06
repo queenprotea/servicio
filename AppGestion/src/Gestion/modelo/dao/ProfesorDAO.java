@@ -1,7 +1,6 @@
 package Gestion.modelo.dao;
 
 import Gestion.conexionbd.ConexionBD;
-import Gestion.modelo.raw.Coordinador;
 import Gestion.modelo.raw.Profesor;
 
 import java.sql.Connection;
@@ -70,13 +69,13 @@ public class ProfesorDAO {
 
     }
 
-    public static Profesor obtenerProfesorPorId(int idProfesor) throws SQLException {
+    public static Profesor obtenerProfesorPorMatricula(String idProfesor) throws SQLException {
 
         try {
 
-            String sqlSentencia = "SELECT * FROM profesor WHERE idprofesor= ?";
+            String sqlSentencia = "SELECT * FROM profesor WHERE matricula = ?";
             PreparedStatement statement = ConexionBD.abrirConexion().prepareStatement(sqlSentencia);
-            statement.setInt(1, idProfesor);
+            statement.setString(1, idProfesor);
             ResultSet resultSet = statement.executeQuery();
 
             return serializarProfesor(resultSet);
